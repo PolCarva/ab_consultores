@@ -42,7 +42,7 @@ export default function Home() {
       {/* Noise Overlay */}
       <div className="noise-overlay" />
 
-      {/* Navbar - Layout optimizado con naming "A&B Consultores" */}
+      {/* Navbar - La Isla Flotante */}
       <nav
         ref={navRef}
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full transition-all duration-500 ${
@@ -51,18 +51,18 @@ export default function Home() {
             : "bg-transparent border-transparent"
         }`}
       >
-        <div className="flex items-center gap-6 md:gap-8">
-          <div className={`font-sans-custom font-bold text-base md:text-lg ${isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]"}`}>
-            A&B Consultores
+        <div className="flex items-center gap-8">
+          <div className={`font-sans-custom font-bold text-lg ${isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]"}`}>
+            ABC
           </div>
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden md:flex items-center gap-6">
             <a
               href="#features"
               className={`text-sm font-medium link-hover ${
                 isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
               }`}
             >
-              Por qué ABC
+              Servicios
             </a>
             <a
               href="#philosophy"
@@ -70,7 +70,7 @@ export default function Home() {
                 isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
               }`}
             >
-              Quiénes somos
+              Filosofía
             </a>
             <a
               href="#protocol"
@@ -78,15 +78,7 @@ export default function Home() {
                 isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
               }`}
             >
-              Cómo trabajamos
-            </a>
-            <a
-              href="#services"
-              className={`text-sm font-medium link-hover ${
-                isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
-              }`}
-            >
-              Servicios
+              Proceso
             </a>
             <a
               href="#contact"
@@ -98,13 +90,13 @@ export default function Home() {
             </a>
           </div>
           <button
-            className={`btn-magnetic btn-slide px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-medium ${
+            className={`btn-magnetic btn-slide px-5 py-2 rounded-full text-sm font-medium ${
               isScrolled
                 ? "bg-[var(--green-accent)] text-[var(--cream)]"
                 : "bg-[var(--green-accent)] text-[var(--cream)]"
             }`}
           >
-            Solicitar asesoramiento
+            Reservar consulta
           </button>
         </div>
       </nav>
@@ -112,10 +104,7 @@ export default function Home() {
       {/* Hero - El Plano Inicial */}
       <HeroSection ref={heroRef} />
 
-      {/* Data Analytics - Gráficos de crecimiento */}
-      <DataAnalyticsSection />
-
-      {/* Features - Por qué trabajar con ABC */}
+      {/* Features - Artefactos Funcionales Interactivos */}
       <FeaturesSection ref={featuresRef} />
 
       {/* Philosophy - Quiénes somos */}
@@ -126,9 +115,6 @@ export default function Home() {
 
       {/* Services */}
       <ServicesSection ref={servicesRef} />
-
-      {/* Pricing Section */}
-      <PricingSection />
 
       {/* Results */}
       <ResultsSection />
@@ -283,13 +269,12 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           </p>
         </div>
 
-        <div className="space-y-8 max-w-5xl mx-auto">
-          {/* Card 1 - Decisiones basadas en datos */}
-          <FeatureCardFullWidth
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Card 1 - Diagnostic Shuffler (Decisiones basadas en datos) */}
+          <FeatureCard
             title="Decisiones basadas en datos"
             description="Analizamos la información del predio para convertirla en decisiones más claras y fundamentadas."
             icon={<Target className="w-8 h-8 text-[var(--green-accent)]" />}
-            position="left"
           >
             <div className="relative h-40 overflow-hidden">
               {analysisCards.map((card, index) => {
@@ -318,14 +303,13 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                 );
               })}
             </div>
-          </FeatureCardFullWidth>
+          </FeatureCard>
 
-          {/* Card 2 - Información más ordenada */}
-          <FeatureCardFullWidth
+          {/* Card 2 - Telemetry Typewriter (Información más ordenada) */}
+          <FeatureCard
             title="Información más ordenada"
             description="Organizamos los datos productivos y económicos para facilitar el seguimiento del sistema."
             icon={<Sparkles className="w-8 h-8 text-[var(--green-accent)]" />}
-            position="right"
           >
             <div className="h-40 bg-[var(--moss)]/10 rounded-xl border border-[var(--moss)]/20 p-4 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
@@ -337,14 +321,13 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                 <span className="inline-block w-2 h-4 bg-[var(--green-accent)] animate-pulse ml-1" />
               </div>
             </div>
-          </FeatureCardFullWidth>
+          </FeatureCard>
 
-          {/* Card 3 - Seguimiento técnico */}
-          <FeatureCardFullWidth
+          {/* Card 3 - Cursor Protocol Scheduler (Seguimiento técnico) */}
+          <FeatureCard
             title="Seguimiento técnico"
             description="Acompañamos al productor con análisis y observaciones que ayudan a mejorar el manejo."
             icon={<TrendingUp className="w-8 h-8 text-[var(--green-accent)]" />}
-            position="left"
           >
             <div className="h-40 bg-[var(--moss)]/10 rounded-xl border border-[var(--moss)]/20 p-4 flex flex-col">
               <div className="flex justify-between mb-4">
@@ -376,252 +359,35 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                 Mejores resultados
               </button>
             </div>
-          </FeatureCardFullWidth>
+          </FeatureCard>
         </div>
       </div>
     </section>
   );
 }
 
-function FeatureCardFullWidth({
+function FeatureCard({
   children,
   title,
   description,
   icon,
-  position,
 }: {
   children: React.ReactNode;
   title: string;
   description: string;
   icon: React.ReactNode;
-  position: "left" | "right";
 }) {
   return (
-    <div className={`flex flex-col md:flex-row gap-6 items-center bg-[var(--cream)] rounded-[2rem] border border-[var(--moss)]/10 shadow-lg overflow-hidden hover:shadow-xl transition-shadow ${position === "left" ? "md:flex-row" : "md:flex-row-reverse"}`}>
-      <div className="flex-1 p-6 md:p-8">
+    <div className="bg-[var(--cream)] rounded-[2rem] border border-[var(--moss)]/10 shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+      <div className="p-6">
         <div className="flex items-center gap-3 mb-4">
           {icon}
-          <h3 className="text-2xl font-sans-custom font-bold text-[var(--moss)]">{title}</h3>
+          <h3 className="text-xl font-sans-custom font-bold text-[var(--moss)]">{title}</h3>
         </div>
-        <p className="text-[var(--charcoal)]/70 text-base md:text-lg">{description}</p>
-      </div>
-      <div className="flex-1 p-6 md:p-8">
+        <p className="text-[var(--charcoal)]/60 text-sm mb-6">{description}</p>
         {children}
       </div>
     </div>
-  );
-}
-
-// Data Analytics Section - Gráficos de crecimiento
-function DataAnalyticsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".chart-item", {
-        y: 50,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        ease: "power3.out",
-      });
-
-      gsap.from(".chart-line", {
-        strokeDashoffset: 1000,
-        duration: 2,
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        ease: "power2.out",
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section ref={sectionRef} className="py-24 px-6 bg-[var(--moss-light)]/20">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-[var(--moss)] mb-4">
-            Análisis y visualización de datos
-          </h2>
-          <p className="text-[var(--charcoal)]/70 text-lg max-w-2xl mx-auto">
-            Transformamos la información de tu establecimiento en gráficos claros que muestran el crecimiento y evolución de tu sistema productivo.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Chart 1 - Producción Anual */}
-          <div className="chart-item bg-[var(--cream)] rounded-3xl p-6 shadow-lg">
-            <h3 className="text-xl font-sans-custom font-bold text-[var(--moss)] mb-4">
-              Evolución de Producción
-            </h3>
-            <div className="h-48 relative">
-              <svg viewBox="0 0 300 200" className="w-full h-full">
-                <defs>
-                  <linearGradient id="chartGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(74, 124, 89, 0.3)" />
-                    <stop offset="100%" stopColor="rgba(74, 124, 89, 0)" />
-                  </linearGradient>
-                </defs>
-                <g transform="translate(40, 20)">
-                  {/* Ejes */}
-                  <line x1="0" y1="0" x2="0" y2="140" stroke="#2E4036" strokeWidth="2" />
-                  <line x1="0" y1="140" x2="240" y2="140" stroke="#2E4036" strokeWidth="2" />
-
-                  {/* Línea de datos con animación */}
-                  <path
-                    className="chart-line"
-                    d="M0,120 Q30,100 60,80 T120,70 T180,40 T240,20"
-                    fill="none"
-                    stroke="#4A7C59"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    style={{
-                      strokeDasharray: "1000",
-                      strokeDashoffset: "1000",
-                    }}
-                  />
-
-                  {/* Área bajo la línea */}
-                  <path
-                    className="chart-line"
-                    d="M0,120 Q30,100 60,80 T120,70 T180,40 T240,20 L240,140 L0,140 Z"
-                    fill="url(#chartGradient1)"
-                    style={{
-                      strokeDasharray: "1000",
-                      strokeDashoffset: "1000",
-                    }}
-                  />
-
-                  {/* Puntos de datos */}
-                  {[{x: 0, y: 120}, {x: 60, y: 80}, {x: 120, y: 70}, {x: 180, y: 40}, {x: 240, y: 20}].map((point, index) => (
-                    <circle
-                      key={index}
-                      cx={point.x}
-                      cy={point.y}
-                      r="4"
-                      fill="#4A7C59"
-                      className="chart-line"
-                      style={{
-                        animationDelay: `${index * 0.1}s`,
-                      }}
-                    />
-                  ))}
-                </g>
-              </svg>
-            </div>
-            <p className="text-[var(--charcoal)]/60 text-sm mt-4">
-              Tendencia positiva de +25% en producción anual
-            </p>
-          </div>
-
-          {/* Chart 2 - Eficiencia Forrajera */}
-          <div className="chart-item bg-[var(--cream)] rounded-3xl p-6 shadow-lg">
-            <h3 className="text-xl font-sans-custom font-bold text-[var(--moss)] mb-4">
-              Eficiencia Forrajera
-            </h3>
-            <div className="h-48 relative">
-              <svg viewBox="0 0 300 200" className="w-full h-full">
-                <defs>
-                  <linearGradient id="chartGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="rgba(204, 88, 51, 0.3)" />
-                    <stop offset="100%" stopColor="rgba(204, 88, 51, 0)" />
-                  </linearGradient>
-                </defs>
-                <g transform="translate(40, 20)">
-                  {/* Ejes */}
-                  <line x1="0" y1="0" x2="0" y2="140" stroke="#2E4036" strokeWidth="2" />
-                  <line x1="0" y1="140" x2="240" y2="140" stroke="#2E4036" strokeWidth="2" />
-
-                  {/* Barras animadas */}
-                  {[60, 80, 100, 110, 120, 90, 85].map((height, index) => (
-                    <rect
-                      key={index}
-                      x={index * 35 + 5}
-                      y={140 - height}
-                      width="25"
-                      height={height}
-                      fill="#CC5833"
-                      rx="2"
-                      className="chart-bar"
-                      style={{
-                        transform: "scaleY(0)",
-                        transformOrigin: "bottom",
-                        transition: "transform 1s ease-out",
-                        animationDelay: `${index * 0.15}s`,
-                      }}
-                    />
-                  ))}
-                </g>
-              </svg>
-            </div>
-            <p className="text-[var(--charcoal)]/60 text-sm mt-4">
-              Uso eficiente de recursos forrajeros
-            </p>
-          </div>
-
-          {/* Chart 3 - Rentabilidad */}
-          <div className="chart-item bg-[var(--cream)] rounded-3xl p-6 shadow-lg">
-            <h3 className="text-xl font-sans-custom font-bold text-[var(--moss)] mb-4">
-              Rentabilidad por Cabeza
-            </h3>
-            <div className="h-48 relative">
-              <svg viewBox="0 0 300 200" className="w-full h-full">
-                <g transform="translate(40, 20)">
-                  {/* Ejes */}
-                  <line x1="0" y1="0" x2="0" y2="140" stroke="#2E4036" strokeWidth="2" />
-                  <line x1="0" y1="140" x2="240" y2="140" stroke="#2E4036" strokeWidth="2" />
-
-                  {/* Línea múltiple */}
-                  <path
-                    className="chart-line"
-                    d="M0,100 L40,95 L80,90 L120,85 L160,70 L200,60 L240,50"
-                    fill="none"
-                    stroke="#4A7C59"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    style={{
-                      strokeDasharray: "1000",
-                      strokeDashoffset: "1000",
-                    }}
-                  />
-
-                  <path
-                    className="chart-line"
-                    d="M0,110 L40,105 L80,100 L120,95 L160,80 L200,70 L240,60"
-                    fill="none"
-                    stroke="#CC5833"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    style={{
-                      strokeDasharray: "1000",
-                      strokeDashoffset: "1000",
-                    }}
-                  />
-                </g>
-              </svg>
-            </div>
-            <div className="flex items-center gap-4 mt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[var(--green-accent)] rounded-full" />
-                <span className="text-[var(--charcoal)]/60 text-sm">Ingreso</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[var(--clay)] rounded-full" />
-                <span className="text-[var(--charcoal)]/60 text-sm">Costo</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -955,141 +721,6 @@ function ServiceCard({
         {cta}
       </button>
     </div>
-  );
-}
-
-// Pricing Section
-function PricingSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".pricing-card", {
-        y: 40,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        ease: "power3.out",
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
-  const plans = [
-    {
-      name: "Funcional",
-      price: "Personalizado",
-      description: "Ideal para establecimientos que necesitan ordenar información productiva",
-      features: [
-        "Análisis forrajero",
-        "Evolución de stock",
-        "Balance forrajero",
-        "Base técnica para decisiones",
-        "Informe PDF",
-      ],
-      cta: "Solicitar propuesta",
-      color: "border-[var(--moss)]/30",
-      buttonColor: "border-2 border-[var(--moss)] text-[var(--moss)] hover:bg-[var(--moss)] hover:text-[var(--cream)]",
-    },
-    {
-      name: "Indicadores",
-      price: "Personalizado",
-      description: "Complemento ideal para análisis económico y financiero profundo",
-      features: [
-        "Todo lo de Funcional",
-        "Cálculo de indicadores productivos",
-        "Análisis de costos",
-        "Estado patrimonial",
-        "Análisis de rentabilidad",
-      ],
-      cta: "Solicitar propuesta",
-      color: "border-[var(--green-accent)]",
-      buttonColor: "bg-[var(--green-accent)] text-[var(--cream)] hover:bg-[var(--green-accent)]/90",
-    },
-    {
-      name: "Integral Premium",
-      price: "Personalizado",
-      description: "Diagnóstico integral con seguimiento técnico continuo",
-      features: [
-        "Todo lo de Funcional e Indicadores",
-        "Diagnóstico integral del sistema",
-        "Evaluación estratégica",
-        "Seguimiento técnico continuo",
-        "Recomendaciones personalizadas",
-        "Prioridad en atención",
-      ],
-      cta: "Solicitar propuesta",
-      color: "border-[var(--green-accent)] shadow-2xl",
-      buttonColor: "bg-[var(--clay)] text-[var(--cream)] hover:bg-[var(--clay)]/90",
-      badge: "Más completo",
-    },
-  ];
-
-  return (
-    <section ref={sectionRef} className="py-24 px-6 bg-[var(--cream)]">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-[var(--moss)] mb-4">
-            Planes de Asesoramiento
-          </h2>
-          <p className="text-[var(--charcoal)]/60 text-lg max-w-2xl mx-auto">
-            Diseñamos propuestas adaptadas al nivel de análisis que necesita cada establecimiento.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {plans.map((plan, index) => (
-            <div
-              key={plan.name}
-              className={`pricing-card bg-[var(--cream)] rounded-[2.5rem] p-8 border-2 ${plan.color} transition-all hover:shadow-2xl relative ${index === 1 ? "md:scale-105" : ""}`}
-            >
-              {plan.badge && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--clay)] text-[var(--cream)] px-4 py-1 rounded-full text-sm font-bold">
-                  {plan.badge}
-                </div>
-              )}
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-sans-custom font-bold text-[var(--moss)] mb-2">{plan.name}</h3>
-                <p className="text-[var(--charcoal)]/60 text-sm">{plan.description}</p>
-              </div>
-
-              <div className="text-center mb-8">
-                <div className="text-4xl font-sans-custom font-bold text-[var(--moss)]">
-                  {plan.price}
-                </div>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-[var(--charcoal)]/70">
-                    <div className="w-5 h-5 bg-[var(--green-accent)]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <div className="w-2 h-2 bg-[var(--green-accent)] rounded-full" />
-                    </div>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                className={`w-full py-4 rounded-full font-medium text-lg transition-all ${plan.buttonColor}`}
-              >
-                {plan.cta}
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <p className="text-[var(--charcoal)]/60 text-base">
-            Todos los planes incluyen devolución técnica y seguimiento posterior al informe.
-          </p>
-        </div>
-      </div>
-    </section>
   );
 }
 
