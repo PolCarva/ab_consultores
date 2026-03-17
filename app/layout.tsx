@@ -32,7 +32,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ABC – Almada & Bado Consultores Agropecuarios",
+  title: "A&B - Almada & Bado Consultores Agropecuarios",
   description: "Consultoría agropecuaria y gestión ganadera basada en datos. Ayudamos a productores ganaderos a tomar decisiones técnicas más claras y rentables.",
 };
 

@@ -53,7 +53,7 @@ export default function Home() {
       >
         <div className="flex items-center gap-8">
           <div className={`font-sans-custom font-bold text-lg ${isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]"}`}>
-            ABC
+            A&B
           </div>
           <div className="hidden md:flex items-center gap-6">
             <a
@@ -486,31 +486,30 @@ function ProtocolSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".protocol-card").forEach((card) => {
-        gsap.fromTo(
-          card,
-          {
-            scale: 0.9,
-            opacity: 0.5,
-            filter: "blur(20px)",
-            y: 50,
+      gsap.fromTo(
+        ".protocol-card",
+        {
+          scale: 0.9,
+          opacity: 0.5,
+          filter: "blur(20px)",
+          y: 50,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none play none",
           },
-          {
-            scale: 1,
-            opacity: 1,
-            filter: "blur(0px)",
-            y: 0,
-            duration: 1,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              end: "top 30%",
-              scrub: 0.5,
-            },
-            ease: "power2.inOut",
-          }
-        );
-      });
+          stagger: 0.15,
+          ease: "power2.inOut",
+        }
+      );
     }, cardsRef);
     return () => ctx.revert();
   }, []);
@@ -531,7 +530,7 @@ function ProtocolSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
           {protocols.map((protocol) => (
             <ProtocolCard key={protocol.number} {...protocol} />
           ))}
