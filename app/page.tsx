@@ -38,7 +38,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--cream)]">
+    <div className="min-h-screen bg-cream">
       {/* Noise Overlay */}
       <div className="noise-overlay" />
 
@@ -47,19 +47,19 @@ export default function Home() {
         ref={navRef}
         className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full transition-all duration-500 ${
           isScrolled
-            ? "bg-[var(--cream)]/60 backdrop-blur-xl border border-[var(--moss)]/10 shadow-lg"
+            ? "bg-cream/60 backdrop-blur-xl border border-moss/10 shadow-lg"
             : "bg-transparent border-transparent"
         }`}
       >
         <div className="flex items-center gap-8">
-          <div className={`font-sans-custom font-bold text-lg ${isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]"}`}>
+          <div className={`font-sans-custom font-bold text-lg ${isScrolled ? "text-moss" : "text-cream"}`}>
             A&B
           </div>
           <div className="hidden md:flex items-center gap-6">
             <a
               href="#features"
               className={`text-sm font-medium link-hover ${
-                isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
+                isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Servicios
@@ -67,7 +67,7 @@ export default function Home() {
             <a
               href="#philosophy"
               className={`text-sm font-medium link-hover ${
-                isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
+                isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Filosofía
@@ -75,7 +75,7 @@ export default function Home() {
             <a
               href="#protocol"
               className={`text-sm font-medium link-hover ${
-                isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
+                isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Proceso
@@ -83,7 +83,7 @@ export default function Home() {
             <a
               href="#contact"
               className={`text-sm font-medium link-hover ${
-                isScrolled ? "text-[var(--moss)]" : "text-[var(--cream)]/80 hover:text-[var(--cream)]"
+                isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Contacto
@@ -92,8 +92,8 @@ export default function Home() {
           <button
             className={`btn-magnetic btn-slide px-5 py-2 rounded-full text-sm font-medium ${
               isScrolled
-                ? "bg-[var(--green-accent)] text-[var(--cream)]"
-                : "bg-[var(--green-accent)] text-[var(--cream)]"
+                ? "bg-green-accent text-cream"
+                : "bg-green-accent text-cream"
             }`}
           >
             Reservar consulta
@@ -158,22 +158,22 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     >
       <div ref={heroContentRef} className="container mx-auto px-6 pb-16">
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-[var(--cream)] hero-text">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-cream hero-text">
             Gestión ganadera
           </h1>
-          <h2 className="text-5xl font-bold md:text-8xl lg:text-9xl font-serif-custom italic text-[var(--cream)] hero-text mt-4">
+          <h2 className="text-5xl  font-bold md:text-8xl lg:text-9xl font-serif-custom italic text-cream hero-text mt-4 leading-12">
             basada en{" "}
-            <span className="text-[var(--green-accent)] font-bold">datos.</span>
+            <span className="text-green-accent font-bold">datos.</span>
           </h2>
-          <p className="text-[var(--cream)]/80 text-lg md:text-xl mt-8 max-w-xl hero-text">
+          <p className="text-cream/80 text-lg md:text-xl mt-8 max-w-xl hero-text">
             En A&B Consultores ayudamos a productores ganaderos a entender mejor su sistema productivo para tomar decisiones técnicas más claras y rentables.
           </p>
           <div className="mt-10 hero-text flex flex-wrap gap-4">
-            <button className="btn-magnetic bg-[var(--green-accent)] text-[var(--cream)] px-8 py-4 rounded-full font-medium text-lg hover:bg-[var(--green-accent)]/90 transition-colors">
+            <button className="btn-magnetic bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors">
               Solicitar asesoramiento
               <ArrowRight className="inline-block ml-2 w-5 h-5" />
             </button>
-            <button className="btn-magnetic border-2 border-[var(--cream)] text-[var(--cream)] px-8 py-4 rounded-full font-medium text-lg hover:bg-[var(--cream)] hover:text-[var(--moss)] transition-colors">
+            <button className="btn-magnetic border-2 border-cream text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream hover:text-moss transition-colors">
               Ver servicios
             </button>
           </div>
@@ -182,7 +182,7 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronRight className="w-6 h-6 text-[var(--cream)]/50 rotate-90" />
+        <ChevronRight className="w-6 h-6 text-cream/50 rotate-90" />
       </div>
     </section>
   );
@@ -257,14 +257,14 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     <section
       ref={ref}
       id="features"
-      className="py-24 px-6 bg-[var(--cream)]"
+      className="py-24 px-6 bg-cream"
     >
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-[var(--moss)] mb-4">
+          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Por qué trabajar con A&B
           </h2>
-          <p className="text-[var(--charcoal)]/60 text-lg max-w-2xl mx-auto">
+          <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
             Acompañamos al productor con una mirada técnica, práctica y enfocada en mejorar la gestión del establecimiento.
           </p>
         </div>
@@ -274,7 +274,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <FeatureCard
             title="Decisiones basadas en datos"
             description="Analizamos la información del predio para convertirla en decisiones más claras y fundamentadas."
-            icon={<Target className="w-8 h-8 text-[var(--green-accent)]" />}
+            icon={<Target className="w-8 h-8 text-green-accent" />}
           >
             <div className="relative h-40 overflow-hidden">
               {analysisCards.map((card, index) => {
@@ -285,7 +285,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                 return (
                   <div
                     key={index}
-                    className={`absolute w-full p-4 bg-[var(--moss)]/10 rounded-xl border border-[var(--moss)]/20 transition-all duration-700 ease-in-out ${
+                    className={`absolute w-full p-4 bg-moss/10 rounded-xl border border-moss/20 transition-all duration-700 ease-in-out ${
                       isActive
                         ? "translate-y-0 opacity-100 scale-100 z-10"
                         : isNext
@@ -298,7 +298,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                       willChange: "transform, opacity",
                     }}
                   >
-                    <p className="text-[var(--moss)] font-medium text-sm">{card}</p>
+                    <p className="text-moss font-medium text-sm">{card}</p>
                   </div>
                 );
               })}
@@ -309,16 +309,16 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <FeatureCard
             title="Información más ordenada"
             description="Organizamos los datos productivos y económicos para facilitar el seguimiento del sistema."
-            icon={<Sparkles className="w-8 h-8 text-[var(--green-accent)]" />}
+            icon={<Sparkles className="w-8 h-8 text-green-accent" />}
           >
-            <div className="h-40 bg-[var(--moss)]/10 rounded-xl border border-[var(--moss)]/20 p-4 flex flex-col">
+            <div className="h-40 bg-moss/10 rounded-xl border border-moss/20 p-4 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-2 h-2 bg-[var(--green-accent)] rounded-full animate-pulse" />
-                <span className="text-[var(--moss)]/60 text-xs font-mono-custom">Live Feed</span>
+                <div className="w-2 h-2 bg-green-accent rounded-full animate-pulse" />
+                <span className="text-moss/60 text-xs font-mono-custom">Live Feed</span>
               </div>
-              <div className="flex-1 font-mono-custom text-sm text-[var(--moss)] overflow-hidden">
+              <div className="flex-1 font-mono-custom text-sm text-moss overflow-hidden">
                 <span>{typewriterText}</span>
-                <span className="inline-block w-2 h-4 bg-[var(--green-accent)] animate-pulse ml-1" />
+                <span className="inline-block w-2 h-4 bg-green-accent animate-pulse ml-1" />
               </div>
             </div>
           </FeatureCard>
@@ -327,17 +327,17 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <FeatureCard
             title="Seguimiento técnico"
             description="Acompañamos al productor con análisis y observaciones que ayudan a mejorar el manejo."
-            icon={<TrendingUp className="w-8 h-8 text-[var(--green-accent)]" />}
+            icon={<TrendingUp className="w-8 h-8 text-green-accent" />}
           >
-            <div className="h-40 bg-[var(--moss)]/10 rounded-xl border border-[var(--moss)]/20 p-4 flex flex-col">
+            <div className="h-40 bg-moss/10 rounded-xl border border-moss/20 p-4 flex flex-col">
               <div className="flex justify-between mb-4">
                 {followUpSteps.map((step, index) => (
                   <div
                     key={step}
                     className={`w-8 h-8 flex items-center justify-center rounded-lg text-xs font-medium transition-all ${
                       activeStep === index
-                        ? "bg-[var(--green-accent)] text-[var(--cream)] scale-95"
-                        : "text-[var(--moss)]/60"
+                        ? "bg-green-accent text-cream scale-95"
+                        : "text-moss/60"
                     }`}
                   >
                     {step}
@@ -345,15 +345,15 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                 ))}
               </div>
               <div className="flex-1 flex items-center justify-center">
-                <div className="text-[var(--moss)]/60 text-xs font-mono-custom text-center">
+                <div className="text-moss/60 text-xs font-mono-custom text-center">
                   {activeStep !== null ? "Analizando..." : "Esperando datos"}
                 </div>
               </div>
               <button
                 className={`w-full mt-2 py-2 rounded-lg text-xs font-medium transition-all ${
                   activeStep !== null
-                    ? "bg-[var(--green-accent)] text-[var(--cream)]"
-                    : "bg-[var(--moss)]/20 text-[var(--moss)]/40"
+                    ? "bg-green-accent text-cream"
+                    : "bg-moss/20 text-moss/40"
                 }`}
               >
                 Mejores resultados
@@ -378,13 +378,13 @@ function FeatureCard({
   icon: React.ReactNode;
 }) {
   return (
-    <div className="bg-[var(--cream)] rounded-[2rem] border border-[var(--moss)]/10 shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+    <div className="bg-cream rounded-4xl border border-moss/10 shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
       <div className="p-6">
         <div className="flex items-center gap-3 mb-4">
           {icon}
-          <h3 className="text-xl font-sans-custom font-bold text-[var(--moss)]">{title}</h3>
+          <h3 className="text-xl font-sans-custom font-bold text-moss">{title}</h3>
         </div>
-        <p className="text-[var(--charcoal)]/60 text-sm mb-6">{description}</p>
+        <p className="text-charcoal/60 text-sm mb-6">{description}</p>
         {children}
       </div>
     </div>
@@ -428,18 +428,18 @@ function PhilosophySection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     >
       <div ref={textRef} className="container mx-auto max-w-5xl">
         <div className="philosophy-text mb-12">
-          <p className="text-[var(--cream)]/80 text-xl md:text-2xl font-sans-custom leading-relaxed">
+          <p className="text-cream/80 text-xl md:text-2xl font-sans-custom leading-relaxed">
             En <strong>A&B Consultores</strong> somos dos licenciados en gestión agropecuaria: <strong>Lic. Gastón Almada</strong> y <strong>Lic. Jorge Bado</strong>.
           </p>
         </div>
         <div className="philosophy-text mb-12">
-          <p className="text-[var(--cream)]/80 text-lg md:text-xl font-sans-custom leading-relaxed">
+          <p className="text-cream/80 text-lg md:text-xl font-sans-custom leading-relaxed">
             Acompañamos a productores y empresas rurales con una mirada técnica, clara y enfocada en la toma de decisiones. Nuestro trabajo combina análisis productivo, orden de información, interpretación de indicadores y seguimiento del sistema para transformar datos del predio en acciones concretas.
           </p>
         </div>
         <div className="philosophy-text">
-          <p className="text-4xl md:text-6xl lg:text-7xl font-serif-custom italic text-[var(--cream)] leading-tight">
-            Asesoramos a todo tipo de productores ganaderos en todo <span className="text-[var(--green-accent)]">Uruguay.</span>
+          <p className="text-4xl md:text-6xl lg:text-7xl font-serif-custom italic text-cream leading-tight">
+            Asesoramos a todo tipo de productores ganaderos en todo <span className="text-green-accent font-bold">Uruguay.</span>
           </p>
         </div>
       </div>
@@ -518,19 +518,19 @@ function ProtocolSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     <section
       ref={ref}
       id="protocol"
-      className="py-24 px-6 bg-[var(--cream)]"
+      className="py-24 px-6 bg-cream"
     >
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-[var(--moss)] mb-4">
+          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Cómo trabajamos
           </h2>
-          <p className="text-[var(--charcoal)]/60 text-lg max-w-2xl mx-auto">
+          <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
             Un proceso claro, técnico y profesional para convertir datos del predio en decisiones concretas.
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid gap-8">
           {protocols.map((protocol) => (
             <ProtocolCard key={protocol.number} {...protocol} />
           ))}
@@ -550,13 +550,13 @@ function ProtocolCard({
   description: string;
 }) {
   return (
-    <div className="protocol-card bg-[var(--moss)] text-[var(--cream)] rounded-[3rem] p-8 md:p-12 relative overflow-hidden">
+    <div className="protocol-card bg-moss text-cream rounded-[3rem] p-8 md:p-12 relative overflow-hidden">
       <div className="relative z-10">
-        <div className="font-mono-custom text-[var(--green-accent)] text-3xl md:text-4xl font-bold mb-4">
+        <div className="font-mono-custom text-green-accent text-3xl md:text-4xl font-bold mb-4">
           {number}
         </div>
         <h3 className="text-xl md:text-2xl font-sans-custom font-bold mb-3">{title}</h3>
-        <p className="text-[var(--cream)]/80 text-base">{description}</p>
+        <p className="text-cream/80 text-base">{description}</p>
       </div>
       <div className="absolute right-8 bottom-8 w-16 h-16 opacity-10">
         <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_15s_linear_infinite]">
@@ -589,13 +589,15 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".service-card", {
-        y: 30,
+        y: 20,
         opacity: 0,
-        stagger: 0.2,
-        duration: 1,
+        stagger: 0.15,
+        duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 85%",
+          toggleActions: "play none play none",
+          markers: true,
         },
         ease: "power3.out",
       });
@@ -607,14 +609,14 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     <section
       ref={ref}
       id="services"
-      className="py-24 px-6 bg-[var(--cream)]"
+      className="py-24 px-6 bg-cream"
     >
       <div ref={sectionRef} className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-[var(--moss)] mb-4">
+          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Servicios
           </h2>
-          <p className="text-[var(--charcoal)]/60 text-lg max-w-2xl mx-auto">
+          <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
             Diseñados para adaptarse al nivel de análisis y seguimiento que necesita cada establecimiento.
           </p>
         </div>
@@ -624,7 +626,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <ServiceCard
             title="Funcional"
             description="Ordenamiento de información productiva, análisis forrajero, evolución de stock y base técnica para mejores decisiones."
-            icon={<FileText className="w-12 h-12 text-[var(--green-accent)]" />}
+            icon={<FileText className="w-12 h-12 text-green-accent" />}
             features={[
               "Descripción del predio y suelos",
               "Oferta y demanda forrajera",
@@ -638,7 +640,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <ServiceCard
             title="Indicadores"
             description="Cálculo e interpretación de indicadores productivos, económicos y financieros para entender la rentabilidad del sistema."
-            icon={<BarChart3 className="w-12 h-12 text-[var(--green-accent)]" />}
+            icon={<BarChart3 className="w-12 h-12 text-green-accent" />}
             features={[
               "Costos mensuales",
               "Ingreso bruto e ingreso neto",
@@ -652,7 +654,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <ServiceCard
             title="Servicio Integral"
             description="Diagnóstico integral del sistema ganadero con visión productiva, económica y estratégica."
-            icon={<Star className="w-12 h-12 text-[var(--green-accent)]" />}
+            icon={<Star className="w-12 h-12 text-green-accent" />}
             features={[
               "Todo lo de Funcional",
               "Todo lo de Indicadores",
@@ -686,26 +688,26 @@ function ServiceCard({
 }) {
   return (
     <div
-      className={`service-card bg-[var(--cream)] rounded-[3rem] p-8 border-2 transition-all hover:shadow-xl ${
+      className={`service-card bg-cream rounded-[3rem] p-8 border-2 transition-all hover:shadow-xl ${
         premium
-          ? "border-[var(--green-accent)] shadow-lg"
-          : "border-[var(--moss)]/10"
+          ? "border-green-accent shadow-lg"
+          : "border-moss/10"
       }`}
     >
       <div className="flex items-center gap-4 mb-6">
         {icon}
-        <h3 className="text-2xl font-sans-custom font-bold text-[var(--moss)]">{title}</h3>
+        <h3 className="text-2xl font-sans-custom font-bold text-moss">{title}</h3>
         {premium && (
-          <span className="bg-[var(--green-accent)] text-[var(--cream)] text-xs font-bold px-3 py-1 rounded-full">
+          <span className="bg-green-accent text-cream text-xs font-bold px-3 py-1 rounded-full">
             Premium
           </span>
         )}
       </div>
-      <p className="text-[var(--charcoal)]/80 text-lg mb-6">{description}</p>
+      <p className="text-charcoal/80 text-lg mb-6">{description}</p>
       <ul className="space-y-3 mb-8">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-start gap-2 text-[var(--moss)]/80">
-            <div className="w-1.5 h-1.5 bg-[var(--green-accent)] rounded-full mt-2 flex-shrink-0" />
+          <li key={index} className="flex items-start gap-2 text-moss/80">
+            <div className="w-1.5 h-1.5 bg-green-accent rounded-full mt-2 shrink-0" />
             <span>{feature}</span>
           </li>
         ))}
@@ -713,8 +715,8 @@ function ServiceCard({
       <button
         className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors ${
           premium
-            ? "bg-[var(--green-accent)] text-[var(--cream)] hover:bg-[var(--green-accent)]/90"
-            : "border-2 border-[var(--moss)] text-[var(--moss)] hover:bg-[var(--moss)] hover:text-[var(--cream)]"
+            ? "bg-green-accent text-cream hover:bg-green-accent/90"
+            : "border-2 border-moss text-moss hover:bg-moss hover:text-cream"
         }`}
       >
         {cta}
@@ -745,48 +747,48 @@ function ResultsSection() {
   }, []);
 
   return (
-    <section className="py-24 px-6 bg-[var(--moss)] text-[var(--cream)]">
+    <section className="py-24 px-6 bg-moss text-cream">
       <div ref={sectionRef} className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-sans-custom font-bold mb-4">
             Resultados que puede esperar
           </h2>
-          <p className="text-[var(--cream)]/80 text-lg max-w-2xl mx-auto">
+          <p className="text-cream/80 text-lg max-w-2xl mx-auto">
             En A&B Consultores ayudamos al productor a entender mejor su sistema y tomar decisiones más claras.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="result-item text-center">
-            <div className="w-16 h-16 bg-[var(--green-accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <FileText className="w-8 h-8 text-[var(--green-accent)]" />
+            <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <FileText className="w-8 h-8 text-green-accent" />
             </div>
             <h3 className="text-xl font-sans-custom font-bold mb-2">Mayor control</h3>
-            <p className="text-[var(--cream)]/70">Información organizada para entender qué está pasando en el establecimiento.</p>
+            <p className="text-cream/70">Información organizada para entender qué está pasando en el establecimiento.</p>
           </div>
 
           <div className="result-item text-center">
-            <div className="w-16 h-16 bg-[var(--green-accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Target className="w-8 h-8 text-[var(--green-accent)]" />
+            <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Target className="w-8 h-8 text-green-accent" />
             </div>
             <h3 className="text-xl font-sans-custom font-bold mb-2">Mejores decisiones</h3>
-            <p className="text-[var(--cream)]/70">Datos claros para tomar decisiones sobre manejo, carga y producción.</p>
+            <p className="text-cream/70">Datos claros para tomar decisiones sobre manejo, carga y producción.</p>
           </div>
 
           <div className="result-item text-center">
-            <div className="w-16 h-16 bg-[var(--green-accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <BarChart3 className="w-8 h-8 text-[var(--green-accent)]" />
+            <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <BarChart3 className="w-8 h-8 text-green-accent" />
             </div>
             <h3 className="text-xl font-sans-custom font-bold mb-2">Análisis económico</h3>
-            <p className="text-[var(--cream)]/70">Comprender costos, ingresos y resultados del establecimiento.</p>
+            <p className="text-cream/70">Comprender costos, ingresos y resultados del establecimiento.</p>
           </div>
 
           <div className="result-item text-center">
-            <div className="w-16 h-16 bg-[var(--green-accent)]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <TrendingUp className="w-8 h-8 text-[var(--green-accent)]" />
+            <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <TrendingUp className="w-8 h-8 text-green-accent" />
             </div>
             <h3 className="text-xl font-sans-custom font-bold mb-2">Gestión profesional</h3>
-            <p className="text-[var(--cream)]/70">Herramientas y análisis para mejorar la gestión ganadera.</p>
+            <p className="text-cream/70">Herramientas y análisis para mejorar la gestión ganadera.</p>
           </div>
         </div>
       </div>
@@ -816,13 +818,13 @@ function ContactSection() {
   }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 px-6 bg-[var(--cream)]">
+    <section id="contact" ref={sectionRef} className="py-24 px-6 bg-cream">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-[var(--moss)] mb-4">
+          <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Solicitar contacto
           </h2>
-          <p className="text-[var(--charcoal)]/60 text-lg max-w-2xl mx-auto">
+          <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
             Dejá tus datos y contanos qué necesitás analizar en tu establecimiento.
           </p>
         </div>
@@ -830,52 +832,52 @@ function ContactSection() {
         <div className="max-w-2xl mx-auto">
           <form className="space-y-6">
             <div className="contact-element">
-              <label htmlFor="nombre" className="block text-[var(--moss)] font-medium mb-2">
+              <label htmlFor="nombre" className="block text-moss font-medium mb-2">
                 Nombre
               </label>
               <input
                 type="text"
                 id="nombre"
                 name="nombre"
-                className="w-full px-4 py-3 rounded-xl border-2 border-[var(--moss)]/20 focus:border-[var(--green-accent)] focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
                 placeholder="Tu nombre completo"
               />
             </div>
 
             <div className="contact-element">
-              <label htmlFor="telefono" className="block text-[var(--moss)] font-medium mb-2">
+              <label htmlFor="telefono" className="block text-moss font-medium mb-2">
                 Teléfono
               </label>
               <input
                 type="tel"
                 id="telefono"
                 name="telefono"
-                className="w-full px-4 py-3 rounded-xl border-2 border-[var(--moss)]/20 focus:border-[var(--green-accent)] focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
                 placeholder="+598 XX XXX XXX"
               />
             </div>
 
             <div className="contact-element">
-              <label htmlFor="email" className="block text-[var(--moss)] font-medium mb-2">
+              <label htmlFor="email" className="block text-moss font-medium mb-2">
                 Email
               </label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                className="w-full px-4 py-3 rounded-xl border-2 border-[var(--moss)]/20 focus:border-[var(--green-accent)] focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
                 placeholder="tu@email.com"
               />
             </div>
 
             <div className="contact-element">
-              <label htmlFor="servicio" className="block text-[var(--moss)] font-medium mb-2">
+              <label htmlFor="servicio" className="block text-moss font-medium mb-2">
                 Servicio de interés
               </label>
               <select
                 id="servicio"
                 name="servicio"
-                className="w-full px-4 py-3 rounded-xl border-2 border-[var(--moss)]/20 focus:border-[var(--green-accent)] focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
               >
                 <option value="">Seleccionar servicio</option>
                 <option value="funcional">Funcional</option>
@@ -885,14 +887,14 @@ function ContactSection() {
             </div>
 
             <div className="contact-element">
-              <label htmlFor="mensaje" className="block text-[var(--moss)] font-medium mb-2">
+              <label htmlFor="mensaje" className="block text-moss font-medium mb-2">
                 Mensaje
               </label>
               <textarea
                 id="mensaje"
                 name="mensaje"
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border-2 border-[var(--moss)]/20 focus:border-[var(--green-accent)] focus:outline-none transition-colors bg-white resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white resize-none"
                 placeholder="Contanos qué necesitás analizar en tu establecimiento..."
               />
             </div>
@@ -900,7 +902,7 @@ function ContactSection() {
             <div className="contact-element">
               <button
                 type="submit"
-                className="btn-magnetic w-full bg-[var(--green-accent)] text-[var(--cream)] px-8 py-4 rounded-full font-medium text-lg hover:bg-[var(--green-accent)]/90 transition-colors"
+                className="btn-magnetic w-full bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors"
               >
                 Enviar consulta
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
@@ -916,18 +918,18 @@ function ContactSection() {
 // Footer
 function Footer() {
   return (
-    <footer className="bg-[var(--charcoal)] text-[var(--cream)] rounded-t-[4rem] pt-16 pb-8 px-6">
+    <footer className="bg-charcoal text-cream rounded-t-[4rem] pt-16 pb-8 px-6">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <h3 className="text-3xl font-sans-custom font-bold mb-4">A&B Consultores</h3>
-            <p className="text-[var(--cream)]/60 text-lg max-w-md">
+            <p className="text-cream/60 text-lg max-w-md">
               Consultoría agropecuaria y gestión ganadera basada en datos.
             </p>
           </div>
           <div>
             <h4 className="font-sans-custom font-bold mb-4">Enlaces</h4>
-            <ul className="space-y-2 text-[var(--cream)]/60">
+            <ul className="space-y-2 text-cream/60">
               <li>
                 <a href="#features" className="link-hover">Por qué A&B</a>
               </li>
@@ -944,7 +946,7 @@ function Footer() {
           </div>
           <div>
             <h4 className="font-sans-custom font-bold mb-4">Contacto</h4>
-            <ul className="space-y-2 text-[var(--cream)]/60">
+            <ul className="space-y-2 text-cream/60">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 <span>contacto@abconsultores.uy</span>
@@ -961,14 +963,14 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[var(--cream)]/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span className="font-mono-custom text-sm text-[var(--cream)]/60">
+            <span className="font-mono-custom text-sm text-cream/60">
               System Operational
             </span>
           </div>
-          <p className="text-[var(--cream)]/40 text-sm">
+          <p className="text-cream/40 text-sm">
             © 2026 A&B Consultores. Todos los derechos reservados.
           </p>
         </div>
