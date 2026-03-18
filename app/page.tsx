@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Calendar, ChevronRight, Mail, MapPin, Phone, ArrowRight, Sparkles, Target, TrendingUp, FileText, BarChart3, Star } from "lucide-react";
+import { Calendar, ChevronRight, Mail, MapPin, Phone, ArrowRight, Sparkles, Target, TrendingUp, FileText, BarChart3, Star, Menu, X, MessageCircle } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +19,7 @@ const colors = {
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const featuresRef = useRef<HTMLElement>(null);
@@ -62,6 +63,14 @@ export default function Home() {
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
+              Por qué A&B
+            </a>
+            <a
+              href="#services"
+              className={`text-sm font-medium link-hover ${
+                isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
+              }`}
+            >
               Servicios
             </a>
             <a
@@ -89,17 +98,93 @@ export default function Home() {
               Contacto
             </a>
           </div>
-          <button
-            className={`btn-magnetic btn-slide px-5 py-2 rounded-full text-sm font-medium ${
-              isScrolled
-                ? "bg-green-accent text-cream"
-                : "bg-green-accent text-cream"
-            }`}
-          >
-            Reservar consulta
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              className={`cursor-pointer btn-magnetic btn-slide hidden md:block px-5 py-2 rounded-full text-sm font-medium ${
+                isScrolled
+                  ? "bg-green-accent text-cream"
+                  : "bg-green-accent text-cream"
+              }`}
+            >
+              Reservar consulta
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
+              ) : (
+                <Menu className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
+              )}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-charcoal">
+          <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+            <a
+              href="#features"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
+            >
+              Por qué A&B
+            </a>
+            <a
+              href="#services"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
+            >
+              Servicios
+            </a>
+            <a
+              href="#philosophy"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
+            >
+              Filosofía
+            </a>
+            <a
+              href="#protocol"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
+            >
+              Proceso
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
+            >
+              Contacto
+            </a>
+            <a
+              href="https://wa.me/59899123456"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-accent text-cream px-8 py-4 rounded-full font-bold text-lg hover:bg-green-accent/90 transition-colors flex items-center gap-2"
+            >
+              <MessageCircle className="w-6 h-6" />
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/59899123456"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-green-accent text-cream w-14 h-14 rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
+        aria-label="Contactar por WhatsApp"
+      >
+        <MessageCircle className="w-7 h-7" />
+      </a>
 
       {/* Hero - El Plano Inicial */}
       <HeroSection ref={heroRef} />
@@ -151,13 +236,21 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{
         backgroundImage:
-          "linear-gradient(to top, rgba(46, 64, 54, 0.95) 0%, rgba(26, 26, 26, 0.8) 50%, transparent 100%), url('/hero-bg.jpg')",
+          "linear-gradient(to top, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.75) 70%, rgba(26, 26, 26, 0.65) 100%), url('/hero-bg.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       <div ref={heroContentRef} className="container mx-auto px-6 pb-16">
         <div className="max-w-4xl">
+          {/* Trust Badge */}
+          <div className="hero-text mb-6 flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-accent rounded-full animate-pulse" />
+            <span className="text-cream/90 text-sm font-medium uppercase tracking-wider">
+              Consultoría agropecuaria profesional
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-cream hero-text">
             Gestión ganadera
           </h1>
@@ -165,17 +258,33 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             basada en{" "}
             <span className="text-green-accent font-bold">datos.</span>
           </h2>
-          <p className="text-cream/80 text-lg md:text-xl mt-8 max-w-xl hero-text">
-            En A&B Consultores ayudamos a productores ganaderos a entender mejor su sistema productivo para tomar decisiones técnicas más claras y rentables.
+          <p className="text-cream/95 text-lg md:text-xl mt-8 max-w-2xl hero-text leading-relaxed">
+            En A&B Consultores ayudamos a productores ganaderos a transformar información del predio en decisiones técnicas claras y rentables.
           </p>
           <div className="mt-10 hero-text flex flex-wrap gap-4">
             <button className="btn-magnetic bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors">
               Solicitar asesoramiento
               <ArrowRight className="inline-block ml-2 w-5 h-5" />
             </button>
-            <button className="btn-magnetic border-2 border-cream text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream hover:text-moss transition-colors">
+            <button className="btn-magnetic border-2 border-cream/30 text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream/10 transition-colors">
               Ver servicios
             </button>
+          </div>
+
+          {/* Social Proof Stats */}
+          <div className="hero-text mt-12 pt-8 border-t border-cream/20 grid grid-cols-3 gap-6 md:gap-8">
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-cream">+100</div>
+              <div className="text-cream/70 text-sm md:text-base">Productores asesorados</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-cream">95%</div>
+              <div className="text-cream/70 text-sm md:text-base">Satisfacción</div>
+            </div>
+            <div>
+              <div className="text-3xl md:text-4xl font-bold text-cream">+20%</div>
+              <div className="text-cream/70 text-sm md:text-base">Mejora promedio</div>
+            </div>
           </div>
         </div>
       </div>
@@ -530,7 +639,7 @@ function ProtocolSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid gap-8">
+        <div ref={cardsRef} className="grid md:grid-cols-2 gap-8">
           {protocols.map((protocol) => (
             <ProtocolCard key={protocol.number} {...protocol} />
           ))}
@@ -613,6 +722,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               "Balance forrajero y resultados productivos",
             ]}
             cta="Consultar este servicio"
+            price="$300"
           />
 
           {/* Servicio Indicadores */}
@@ -627,6 +737,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               "Indicadores descriptivos, productivos y financieros",
             ]}
             cta="Consultar este servicio"
+            price="$450"
           />
 
           {/* Servicio Integral Premium */}
@@ -643,8 +754,12 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             ]}
             cta="Consultar este servicio"
             premium
+            price="$700"
           />
         </div>
+        <p className="text-center text-charcoal/60 text-sm mt-8">
+          *Precios mensuales según tamaño del establecimiento. Consultar por opciones personalizadas.
+        </p>
       </div>
     </section>
   );
@@ -657,6 +772,7 @@ function ServiceCard({
   features,
   cta,
   premium = false,
+  price,
 }: {
   title: string;
   description: string;
@@ -664,6 +780,7 @@ function ServiceCard({
   features: string[];
   cta: string;
   premium?: boolean;
+  price?: string;
 }) {
   return (
     <div
@@ -682,6 +799,12 @@ function ServiceCard({
           </span>
         )}
       </div>
+      {price && (
+        <div className="mb-4">
+          <span className="text-3xl md:text-4xl font-sans-custom font-bold text-green-accent">{price}</span>
+          <span className="text-sm text-charcoal/60">/mes</span>
+        </div>
+      )}
       <p className="text-charcoal/80 text-lg mb-6">{description}</p>
       <ul className="space-y-3 mb-8">
         {features.map((feature, index) => (
@@ -818,7 +941,7 @@ function ContactSection() {
                 type="text"
                 id="nombre"
                 name="nombre"
-                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
                 placeholder="Tu nombre completo"
               />
             </div>
@@ -831,7 +954,7 @@ function ContactSection() {
                 type="tel"
                 id="telefono"
                 name="telefono"
-                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
                 placeholder="+598 XX XXX XXX"
               />
             </div>
@@ -844,7 +967,7 @@ function ContactSection() {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
                 placeholder="tu@email.com"
               />
             </div>
@@ -856,7 +979,7 @@ function ContactSection() {
               <select
                 id="servicio"
                 name="servicio"
-                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
               >
                 <option value="">Seleccionar servicio</option>
                 <option value="funcional">Funcional</option>
@@ -873,7 +996,7 @@ function ContactSection() {
                 id="mensaje"
                 name="mensaje"
                 rows={4}
-                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent focus:outline-none transition-colors bg-white resize-none"
+                className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white resize-none"
                 placeholder="Contanos qué necesitás analizar en tu establecimiento..."
               />
             </div>
@@ -946,7 +1069,7 @@ function Footer() {
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span className="font-mono-custom text-sm text-cream/60">
-              System Operational
+              Sistema Operativo
             </span>
           </div>
           <p className="text-cream/40 text-sm">
