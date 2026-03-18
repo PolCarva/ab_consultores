@@ -17,6 +17,8 @@ const colors = {
   greenAccent: "#4A7C59",
 };
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -325,8 +327,19 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     "> Generando recomendaciones...",
   ];
 
-  const followUpSteps = ["1", "2", "3", "4", "5", "6"];
-  const [activeStep, setActiveStep] = useState<number | null>(null);
+  const followUpSteps = ["L", "M", "M", "J", "V", "S", "D"];
+  const [activeDay, setActiveDay] = useState<number | null>(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0, visible: false });
+  const [isClicking, setIsClicking] = useState(false);
+  const weeklyProgress = [
+    { day: "L", completed: true, progress: 85 },
+    { day: "M", completed: true, progress: 92 },
+    { day: "X", completed: false, progress: 45 },
+    { day: "J", completed: false, progress: 30 },
+    { day: "V", completed: false, progress: 15 },
+    { day: "S", completed: false, progress: 0 },
+    { day: "D", completed: false, progress: 0 },
+  ];
 
   useEffect(() => {
     // Shuffler Animation
@@ -359,14 +372,55 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
   }, []);
 
   useEffect(() => {
-    // Follow Up Animation
-    const followUpInterval = setInterval(() => {
-      const randomStep = Math.floor(Math.random() * followUpSteps.length);
-      setActiveStep(randomStep);
-      setTimeout(() => setActiveStep(null), 1500);
-    }, 2000);
+    // Cursor Animation for Follow Up - Weekly Progress
+    const animationSequence = async () => {
+      const followUpElement = document.getElementById("follow-up-card");
+      if (!followUpElement) return;
 
-    return () => clearInterval(followUpInterval);
+      const playAnimation = async () => {
+        // Random day selection (Monday to Friday for work days)
+        const randomDay = Math.floor(Math.random() * 5); // 0-4 for L-V
+
+        // Step 1: Cursor enters from left
+        setCursorPosition({ x: 10, y: 50, visible: true });
+        await sleep(300);
+
+        // Step 2: Move to the selected day
+        const dayX = 10 + (randomDay * 12) + 6; // Calculate position
+        setCursorPosition({ x: dayX, y: 50, visible: true });
+        await sleep(400);
+
+        // Step 3: Click animation
+        setIsClicking(true);
+        setActiveDay(randomDay);
+        await sleep(300);
+        setIsClicking(false);
+        await sleep(200);
+
+        // Step 4: Move to Save button
+        setCursorPosition({ x: 85, y: 85, visible: true });
+        await sleep(400);
+
+        // Step 5: Click on Save button
+        setIsClicking(true);
+        await sleep(300);
+        setIsClicking(false);
+        await sleep(200);
+
+        // Step 6: Fade out
+        setCursorPosition({ ...cursorPosition, visible: false });
+        setActiveDay(null);
+        await sleep(1000);
+
+        // Loop the animation
+        playAnimation();
+      };
+
+      playAnimation();
+    };
+
+    const timeoutId = setTimeout(animationSequence, 500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return (
@@ -430,7 +484,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             <div className="h-40 bg-moss/10 rounded-xl border border-moss/20 p-4 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 bg-green-accent rounded-full animate-pulse" />
-                <span className="text-moss/60 text-xs font-mono-custom">Live Feed</span>
+                <span className="text-moss/60 text-xs font-mono-custom">Retroalimentación en tiempo real</span>
               </div>
               <div className="flex-1 font-mono-custom text-sm text-moss overflow-hidden">
                 <span>{typewriterText}</span>
@@ -445,34 +499,93 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             description="Acompañamos al productor con análisis y observaciones que ayudan a mejorar el manejo."
             icon={<TrendingUp className="w-8 h-8 text-green-accent" />}
           >
-            <div className="h-40 bg-moss/10 rounded-xl border border-moss/20 p-4 flex flex-col">
-              <div className="flex justify-between mb-4">
-                {followUpSteps.map((step, index) => (
-                  <div
-                    key={step}
-                    className={`w-8 h-8 flex items-center justify-center rounded-lg text-xs font-medium transition-all ${
-                      activeStep === index
-                        ? "bg-green-accent text-cream scale-95"
-                        : "text-moss/60"
-                    }`}
+            <div
+              id="follow-up-card"
+              className="relative h-52 bg-moss/10 rounded-2xl border border-moss/20 p-5 flex flex-col overflow-hidden"
+            >
+              {/* Animated Cursor */}
+              {cursorPosition.visible && (
+                <div
+                  className="absolute z-20 pointer-events-none transition-all duration-300"
+                  style={{
+                    left: `${cursorPosition.x}%`,
+                    top: `${cursorPosition.y}%`,
+                    transform: `translate(-50%, -50%) ${isClicking ? 'scale(0.95)' : 'scale(1)'}`,
+                  }}
+                >
+                  {/* Cursor SVG */}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className={`transition-transform duration-150 ${isClicking ? 'scale-90' : 'scale-100'}`}
                   >
-                    {step}
+                    <path
+                      d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87c.45 0 .67-.54.35-.85L6.35 2.86a.5.5 0 0 0-.85.35Z"
+                      fill="#2E4036"
+                      stroke="#4A7C59"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                  {/* Click effect */}
+                  {isClicking && (
+                    <div className="absolute inset-0 border-2 border-green-accent/50 rounded-full animate-ping" />
+                  )}
+                </div>
+              )}
+
+              {/* Weekly Progress Header */}
+              <div className="text-xs font-medium text-moss/70 mb-3 font-sans-custom">
+                Avances semanales
+              </div>
+
+              {/* Weekly Days Grid */}
+              <div className="flex justify-between mb-4 relative">
+                {weeklyProgress.map((day, index) => (
+                  <div key={index} className="flex-1 flex flex-col items-center gap-1">
+                    <div
+                      className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-bold transition-all duration-300 ${
+                        activeDay === index
+                          ? "bg-green-accent text-cream scale-95 shadow-lg"
+                          : day.completed
+                          ? "bg-moss/20 text-moss"
+                          : "bg-moss/5 text-moss/50"
+                      }`}
+                    >
+                      {day.day}
+                    </div>
+                    {/* Progress indicator */}
+                    <div className="w-9 h-1 bg-moss/10 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full transition-all duration-300 ${
+                          day.completed ? "bg-green-accent" : "bg-moss/30"
+                        }`}
+                        style={{ width: `${day.progress}%` }}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
+
+              {/* Status Text */}
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-moss/60 text-xs font-mono-custom text-center">
-                  {activeStep !== null ? "Analizando..." : "Esperando datos"}
+                  {activeDay !== null
+                    ? `Actualizando ${weeklyProgress[activeDay].day}...`
+                    : "Sincronizando datos"}
                 </div>
               </div>
+
+              {/* Save Button */}
               <button
-                className={`w-full mt-2 py-2 rounded-lg text-xs font-medium transition-all ${
-                  activeStep !== null
-                    ? "bg-green-accent text-cream"
-                    : "bg-moss/20 text-moss/40"
+                className={`w-full mt-3 py-2.5 rounded-xl text-xs font-medium transition-all ${
+                  activeDay !== null
+                    ? "bg-green-accent text-cream shadow-md"
+                    : "bg-moss/10 text-moss/40"
                 }`}
               >
-                Mejores resultados
+                Guardar cambios
               </button>
             </div>
           </FeatureCard>

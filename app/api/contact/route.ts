@@ -6,7 +6,13 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { nombre, telefono, email, servicio, mensaje } = body;
+    const { nombre, telefono, email, servicio, mensaje } = body as {
+      nombre?: string;
+      telefono?: string;
+      email?: string;
+      servicio?: string;
+      mensaje?: string;
+    };
 
     // Validate required fields
     if (!nombre || !email || !mensaje) {
@@ -21,7 +27,7 @@ export async function POST(request: NextRequest) {
       funcional: "Funcional",
       indicadores: "Indicadores",
       integral: "Servicio Integral (Premium)",
-    }[servicio] || servicio || "No especificado";
+    }[servicio as keyof { funcional: string; indicadores: string; integral: string }] || servicio || "No especificado";
 
     // Send email using Resend
     // Note: For development/testing with Resend free tier, emails can only be sent
