@@ -729,6 +729,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               "Balance forrajero y resultados productivos",
             ]}
             cta="Consultar este servicio"
+            servicio="funcional"
             price="$300"
           />
 
@@ -744,6 +745,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               "Indicadores descriptivos, productivos y financieros",
             ]}
             cta="Consultar este servicio"
+            servicio="indicadores"
             price="$450"
           />
 
@@ -760,6 +762,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               "Seguimiento técnico continuo",
             ]}
             cta="Consultar este servicio"
+            servicio="integral"
             premium
             price="$700"
           />
@@ -780,6 +783,7 @@ function ServiceCard({
   cta,
   premium = false,
   price,
+  servicio,
 }: {
   title: string;
   description: string;
@@ -788,7 +792,17 @@ function ServiceCard({
   cta: string;
   premium?: boolean;
   price?: string;
+  servicio?: string;
 }) {
+  const handleClick = () => {
+    if (servicio) {
+      // Update URL with service parameter and scroll to contact
+      window.location.hash = "contact";
+      window.history.replaceState(null, "", `?servicio=${servicio}#contact`);
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div
       className={`service-card bg-cream rounded-[3rem] p-8 border-2 transition-all hover:shadow-xl ${
@@ -821,16 +835,16 @@ function ServiceCard({
           </li>
         ))}
       </ul>
-      <a
-        href="#contact"
-        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors inline-flex items-center justify-center ${
+      <button
+        onClick={handleClick}
+        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors inline-flex items-center justify-center cursor-pointer ${
           premium
             ? "bg-green-accent text-cream hover:bg-green-accent/90"
             : "border-2 border-moss text-moss hover:bg-moss hover:text-cream"
         }`}
       >
         {cta}
-      </a>
+      </button>
     </div>
   );
 }
@@ -937,6 +951,15 @@ function ContactSection() {
       });
     }, sectionRef);
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    // Check URL for servicio parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const servicioParam = urlParams.get("servicio");
+    if (servicioParam) {
+      setFormData(prev => ({ ...prev, servicio: servicioParam }));
+    }
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
