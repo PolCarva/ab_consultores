@@ -797,9 +797,10 @@ function ServiceCard({
   const handleClick = () => {
     if (servicio) {
       // Update URL with service parameter and scroll to contact
-      window.location.hash = "contact";
-      window.history.replaceState(null, "", `?servicio=${servicio}#contact`);
+      window.history.pushState({ servicio }, "", `?servicio=${servicio}#contact`);
       document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      // Dispatch custom event to notify ContactSection
+      window.dispatchEvent(new CustomEvent("servicioSelected", { detail: servicio }));
     }
   };
 
@@ -955,11 +956,36 @@ function ContactSection() {
 
   useEffect(() => {
     // Check URL for servicio parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const servicioParam = urlParams.get("servicio");
-    if (servicioParam) {
-      setFormData(prev => ({ ...prev, servicio: servicioParam }));
-    }
+    const updateServicioFromUrl = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const servicioParam = urlParams.get("servicio");
+      if (servicioParam) {
+        setFormData(prev => ({ ...prev, servicio: servicioParam }));
+      }
+    };
+
+    // Check on mount
+    updateServicioFromUrl();
+
+    // Listen for URL changes (hash, popstate)
+    const handleUrlChange = () => {
+      setTimeout(updateServicioFromUrl, 100);
+    };
+
+    // Listen for custom service selection event
+    const handleServicioSelected = (e: CustomEvent) => {
+      setFormData(prev => ({ ...prev, servicio: e.detail }));
+    };
+
+    window.addEventListener("hashchange", handleUrlChange);
+    window.addEventListener("popstate", handleUrlChange);
+    window.addEventListener("servicioSelected", handleServicioSelected as EventListener);
+
+    return () => {
+      window.removeEventListener("hashchange", handleUrlChange);
+      window.removeEventListener("popstate", handleUrlChange);
+      window.removeEventListener("servicioSelected", handleServicioSelected as EventListener);
+    };
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
