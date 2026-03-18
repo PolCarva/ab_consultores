@@ -99,7 +99,8 @@ export default function Home() {
             </a>
           </div>
           <div className="flex items-center gap-4">
-            <button
+            <a
+              href="#contact"
               className={`cursor-pointer btn-magnetic btn-slide hidden md:block px-5 py-2 rounded-full text-sm font-medium ${
                 isScrolled
                   ? "bg-green-accent text-cream"
@@ -107,7 +108,7 @@ export default function Home() {
               }`}
             >
               Reservar consulta
-            </button>
+            </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
@@ -177,7 +178,7 @@ export default function Home() {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/59899123456"
+        href="https://wa.me/59898266917?text=Hola%2C%20me%20gustar%C3%ADa%20contratar%20sus%20servicios"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-green-accent text-cream w-14 h-14 rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
@@ -262,13 +263,19 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             En A&B Consultores ayudamos a productores ganaderos a transformar información del predio en decisiones técnicas claras y rentables.
           </p>
           <div className="mt-10 hero-text flex flex-wrap gap-4">
-            <button className="btn-magnetic bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors">
+            <a
+              href="#contact"
+              className="btn-magnetic bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors inline-flex items-center"
+            >
               Solicitar asesoramiento
               <ArrowRight className="inline-block ml-2 w-5 h-5" />
-            </button>
-            <button className="btn-magnetic border-2 border-cream/30 text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream/10 transition-colors">
+            </a>
+            <a
+              href="#services"
+              className="btn-magnetic border-2 border-cream/30 text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream/10 transition-colors inline-flex items-center"
+            >
               Ver servicios
-            </button>
+            </a>
           </div>
 
           {/* Social Proof Stats */}
@@ -814,15 +821,16 @@ function ServiceCard({
           </li>
         ))}
       </ul>
-      <button
-        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors ${
+      <a
+        href="#contact"
+        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors inline-flex items-center justify-center ${
           premium
             ? "bg-green-accent text-cream hover:bg-green-accent/90"
             : "border-2 border-moss text-moss hover:bg-moss hover:text-cream"
         }`}
       >
         {cta}
-      </button>
+      </a>
     </div>
   );
 }
@@ -901,6 +909,18 @@ function ResultsSection() {
 // Contact Section
 function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [formData, setFormData] = useState({
+    nombre: "",
+    telefono: "",
+    email: "",
+    servicio: "",
+    mensaje: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error" | null; message: string }>({
+    type: null,
+    message: "",
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -919,6 +939,57 @@ function ContactSection() {
     return () => ctx.revert();
   }, []);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({
+          type: "success",
+          message: data.message || "¡Mensaje enviado correctamente! Te contactaremos pronto."
+        });
+        setFormData({
+          nombre: "",
+          telefono: "",
+          email: "",
+          servicio: "",
+          mensaje: "",
+        });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: data.error || "Hubo un error al enviar el mensaje. Por favor intenta nuevamente."
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Hubo un error al enviar el mensaje. Por favor intenta nuevamente."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" ref={sectionRef} className="py-24 px-6 bg-cream">
       <div className="container mx-auto">
@@ -932,7 +1003,7 @@ function ContactSection() {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="contact-element">
               <label htmlFor="nombre" className="block text-moss font-medium mb-2">
                 Nombre
@@ -941,6 +1012,9 @@ function ContactSection() {
                 type="text"
                 id="nombre"
                 name="nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+                required
                 className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
                 placeholder="Tu nombre completo"
               />
@@ -954,6 +1028,8 @@ function ContactSection() {
                 type="tel"
                 id="telefono"
                 name="telefono"
+                value={formData.telefono}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
                 placeholder="+598 XX XXX XXX"
               />
@@ -967,6 +1043,9 @@ function ContactSection() {
                 type="email"
                 id="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
                 className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
                 placeholder="tu@email.com"
               />
@@ -979,6 +1058,8 @@ function ContactSection() {
               <select
                 id="servicio"
                 name="servicio"
+                value={formData.servicio}
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white"
               >
                 <option value="">Seleccionar servicio</option>
@@ -995,19 +1076,33 @@ function ContactSection() {
               <textarea
                 id="mensaje"
                 name="mensaje"
+                value={formData.mensaje}
+                onChange={handleChange}
+                required
                 rows={4}
                 className="w-full px-4 py-3 rounded-xl border-2 border-moss/20 focus:border-green-accent transition-colors bg-white resize-none"
                 placeholder="Contanos qué necesitás analizar en tu establecimiento..."
               />
             </div>
 
+            {submitStatus.type && (
+              <div className={`contact-element p-4 rounded-xl ${
+                submitStatus.type === "success"
+                  ? "bg-green-accent/10 text-green-accent border border-green-accent/30"
+                  : "bg-red-100 text-red-700 border border-red-300"
+              }`}>
+                <p className="font-medium">{submitStatus.message}</p>
+              </div>
+            )}
+
             <div className="contact-element">
               <button
                 type="submit"
-                className="btn-magnetic w-full bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors"
+                disabled={isSubmitting}
+                className="btn-magnetic w-full bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar consulta
-                <ArrowRight className="inline-block ml-2 w-5 h-5" />
+                {isSubmitting ? "Enviando..." : "Enviar consulta"}
+                {!isSubmitting && <ArrowRight className="inline-block ml-2 w-5 h-5" />}
               </button>
             </div>
           </form>
