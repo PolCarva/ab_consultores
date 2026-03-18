@@ -584,34 +584,13 @@ function ProtocolCard({
 
 // Services Section
 function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".service-card", {
-        y: 20,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          toggleActions: "play none play none",
-          markers: true,
-        },
-        ease: "power3.out",
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       ref={ref}
       id="services"
       className="py-24 px-6 bg-cream"
     >
-      <div ref={sectionRef} className="container mx-auto">
+      <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Servicios
