@@ -90,9 +90,11 @@ export default function Home() {
         }`}
       >
         <div className="flex items-center gap-8">
-          <div className={`font-sans-custom font-bold text-lg ${isScrolled ? "text-moss" : "text-cream"}`}>
-            A&B
-          </div>
+          <img
+            src={isScrolled ? "/logo-small.svg" : "/logo-small-white.svg"}
+            alt="A&B Consultores Agropecuarios"
+            className="h-6 md:h-10 w-auto object-contain"
+          />
           <div className="hidden md:flex items-center gap-6">
             <a
               href="#features"
@@ -148,14 +150,14 @@ export default function Home() {
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors relative"
+              className="md:hidden flex items-center justify-center min-h-[20px] min-w-[20px] p-3 rounded-xl hover:bg-white/10 transition-colors relative touch-manipulation"
               aria-label="Toggle menu"
             >
               <span className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}>
-                <Menu className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
+                <Menu className={`w-9 h-9 ${isScrolled ? "text-moss" : "text-cream"}`} strokeWidth={2.25} />
               </span>
               <span className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}>
-                <X className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
+                <X className={`w-9 h-9 ${isScrolled ? "text-moss" : "text-cream"}`} strokeWidth={2.25} />
               </span>
             </button>
           </div>
@@ -166,6 +168,11 @@ export default function Home() {
       {mobileMenuOpen && (
         <div ref={mobileMenuRef} className="fixed inset-0 z-40 bg-charcoal">
           <div ref={mobileMenuContentRef} className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+            <img
+              src="/logo-white.svg"
+              alt="A&B Consultores Agropecuarios"
+              className="h-24 md:h-20 w-auto object-contain mb-4"
+            />
             <a
               href="#features"
               onClick={() => setMobileMenuOpen(false)}
@@ -281,7 +288,7 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
       }}
     >
       <div ref={heroContentRef} className="container mx-auto px-6 pb-16 pt-20 md:pt-0">
-        <div className="max-w-4xl">
+        <div className="max-w-4xl mt-4 md:mt-8">
           {/* Trust Badge */}
           <div className="hero-text mb-6 flex items-center gap-2">
             <div className="w-2 h-2 bg-green-accent rounded-full animate-pulse" />
@@ -293,7 +300,7 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <h1 className="text-4xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-cream hero-text">
             Gestión ganadera
           </h1>
-          <h2 className="text-4xl font-bold md:text-8xl lg:text-9xl font-serif-custom italic text-cream hero-text mt-4 leading-12">
+          <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif-custom italic text-cream hero-text leading-tighter">
             basada en{" "}
             <span className="text-green-accent font-bold">datos.</span>
           </h2>
@@ -1317,7 +1324,13 @@ function Footer() {
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
-            <h3 className="text-3xl font-sans-custom font-bold mb-4">A&B Consultores</h3>
+            <div className="mb-4">
+              <img
+                src="/logo-small-white.svg"
+                alt="A&B Consultores Agropecuarios"
+                className="h-16 md:h-20 w-auto object-contain"
+              />
+            </div>
             <p className="text-cream/60 text-lg max-w-md">
               Consultoría agropecuaria y gestión ganadera basada en datos.
             </p>

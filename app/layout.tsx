@@ -43,6 +43,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/logo-small-white.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
+        <link rel="icon" href="/logo-small-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
+      </head>
       <body
         className={`${jakartaSans.variable} ${outfit.variable} ${cormorant.variable} ${plexMono.variable} antialiased`}
       >
