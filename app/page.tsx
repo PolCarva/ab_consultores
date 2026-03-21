@@ -28,6 +28,8 @@ export default function Home() {
   const philosophyRef = useRef<HTMLElement>(null);
   const protocolRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Navbar Morphing on Scroll
@@ -39,6 +41,39 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileMenuRef.current && mobileMenuContentRef.current) {
+      if (mobileMenuOpen) {
+        // Animate in
+        gsap.fromTo(
+          mobileMenuRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.3, ease: "power2.out" }
+        );
+
+        gsap.fromTo(
+          mobileMenuContentRef.current.children,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.4,
+            stagger: 0.08,
+            ease: "power2.out",
+            delay: 0.1
+          }
+        );
+      } else {
+        // Animate out
+        gsap.to(mobileMenuRef.current, {
+          opacity: 0,
+          duration: 0.2,
+          ease: "power2.in"
+        });
+      }
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <div className="min-h-screen bg-cream">
@@ -103,7 +138,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <a
               href="#contact"
-              className={`cursor-pointer btn-magnetic btn-slide hidden md:block px-5 py-2 rounded-full text-sm font-medium ${
+              className={`cursor-pointer btn-magnetic btn-slide hidden md:block px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
                 isScrolled
                   ? "bg-green-accent text-cream"
                   : "bg-green-accent text-cream"
@@ -113,14 +148,15 @@ export default function Home() {
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors relative"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? (
-                <X className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
-              ) : (
+              <span className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}>
                 <Menu className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
-              )}
+              </span>
+              <span className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}>
+                <X className={`w-6 h-6 ${isScrolled ? "text-moss" : "text-cream"}`} />
+              </span>
             </button>
           </div>
         </div>
@@ -128,8 +164,8 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-charcoal">
-          <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+        <div ref={mobileMenuRef} className="fixed inset-0 z-40 bg-charcoal">
+          <div ref={mobileMenuContentRef} className="flex flex-col items-center justify-center h-full space-y-8 px-6">
             <a
               href="#features"
               onClick={() => setMobileMenuOpen(false)}
@@ -169,7 +205,7 @@ export default function Home() {
               href="https://wa.me/59899123456"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-accent text-cream px-8 py-4 rounded-full font-bold text-lg hover:bg-green-accent/90 transition-colors flex items-center gap-2"
+              className="bg-green-accent text-cream px-8 py-4 rounded-full font-bold text-lg hover:bg-green-accent/90 transition-colors flex items-center gap-2 whitespace-nowrap"
             >
               <MessageCircle className="w-6 h-6" />
               WhatsApp
@@ -244,7 +280,7 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
         backgroundPosition: "center",
       }}
     >
-      <div ref={heroContentRef} className="container mx-auto px-6 pb-16">
+      <div ref={heroContentRef} className="container mx-auto px-6 pb-16 pt-20 md:pt-0">
         <div className="max-w-4xl">
           {/* Trust Badge */}
           <div className="hero-text mb-6 flex items-center gap-2">
@@ -254,27 +290,27 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-cream hero-text">
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-cream hero-text">
             Gestión ganadera
           </h1>
-          <h2 className="text-5xl  font-bold md:text-8xl lg:text-9xl font-serif-custom italic text-cream hero-text mt-4 leading-12">
+          <h2 className="text-4xl font-bold md:text-8xl lg:text-9xl font-serif-custom italic text-cream hero-text mt-4 leading-12">
             basada en{" "}
             <span className="text-green-accent font-bold">datos.</span>
           </h2>
-          <p className="text-cream/95 text-lg md:text-xl mt-8 max-w-2xl hero-text leading-relaxed">
+          <p className="text-cream/95 text-base md:text-xl mt-8 max-w-2xl hero-text leading-relaxed">
             En A&B Consultores ayudamos a productores ganaderos a transformar información del predio en decisiones técnicas claras y rentables.
           </p>
-          <div className="mt-10 hero-text flex flex-wrap gap-4">
+          <div className="mt-10 hero-text flex flex-col sm:flex-row gap-4">
             <a
               href="#contact"
-              className="btn-magnetic bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors inline-flex items-center"
+              className="btn-magnetic bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors inline-flex items-center justify-center whitespace-nowrap"
             >
               Solicitar asesoramiento
               <ArrowRight className="inline-block ml-2 w-5 h-5" />
             </a>
             <a
               href="#services"
-              className="btn-magnetic border-2 border-cream/30 text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream/10 transition-colors inline-flex items-center"
+              className="btn-magnetic border-2 border-cream/30 text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-cream/10 transition-colors inline-flex items-center justify-center whitespace-nowrap"
             >
               Ver servicios
             </a>
@@ -284,15 +320,15 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           <div className="hero-text mt-12 pt-8 border-t border-cream/20 grid grid-cols-3 gap-6 md:gap-8">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-cream">+100</div>
-              <div className="text-cream/70 text-sm md:text-base">Productores asesorados</div>
+              <div className="text-cream/70 text-xs md:text-base whitespace-nowrap">Productores asesorados</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-cream">95%</div>
-              <div className="text-cream/70 text-sm md:text-base">Satisfacción</div>
+              <div className="text-cream/70 text-xs md:text-base whitespace-nowrap">Satisfacción</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-cream">+20%</div>
-              <div className="text-cream/70 text-sm md:text-base">Mejora promedio</div>
+              <div className="text-cream/70 text-xs md:text-base whitespace-nowrap">Mejora promedio</div>
             </div>
           </div>
         </div>
@@ -925,11 +961,11 @@ function ServiceCard({
           : "border-moss/10"
       }`}
     >
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-2 md:gap-4 mb-6 flex-wrap">
         {icon}
-        <h3 className="text-2xl font-sans-custom font-bold text-moss">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-sans-custom font-bold text-moss whitespace-nowrap">{title}</h3>
         {premium && (
-          <span className="bg-green-accent text-cream text-xs font-bold px-3 py-1 rounded-full">
+          <span className="bg-green-accent text-cream text-xs font-bold px-3 py-1 rounded-full shrink-0">
             Premium
           </span>
         )}
@@ -951,7 +987,7 @@ function ServiceCard({
       </ul>
       <button
         onClick={handleClick}
-        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors inline-flex items-center justify-center cursor-pointer ${
+        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors inline-flex items-center justify-center cursor-pointer whitespace-nowrap ${
           premium
             ? "bg-green-accent text-cream hover:bg-green-accent/90"
             : "border-2 border-moss text-moss hover:bg-moss hover:text-cream"
@@ -1261,7 +1297,7 @@ function ContactSection() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-magnetic w-full bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="btn-magnetic w-full bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
               >
                 {isSubmitting ? "Enviando..." : "Enviar consulta"}
                 {!isSubmitting && <ArrowRight className="inline-block ml-2 w-5 h-5" />}
@@ -1312,7 +1348,7 @@ function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+598 XX XXX XXX</span>
+                <span>+598 98 266 917</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
