@@ -3,9 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Calendar, ChevronRight, Mail, MapPin, Phone, ArrowRight, Sparkles, Target, TrendingUp, FileText, BarChart3, Star, Menu, X, MessageCircle } from "lucide-react";
+import {
+  Calendar,
+  ChevronRight,
+  Mail,
+  MapPin,
+  Phone,
+  ArrowRight,
+  Sparkles,
+  Target,
+  TrendingUp,
+  FileText,
+  BarChart3,
+  Star,
+  Menu,
+  X,
+  MessageCircle,
+  Instagram,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const INSTAGRAM_HANDLE = "ab.gestionganadera";
+const INSTAGRAM_URL = `https://www.instagram.com/${encodeURIComponent(INSTAGRAM_HANDLE)}`;
 
 // Color Constants - Ajustados para predominancia del verde
 const colors = {
@@ -17,7 +37,7 @@ const colors = {
   greenAccent: "#4A7C59",
 };
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,7 +69,7 @@ export default function Home() {
         gsap.fromTo(
           mobileMenuRef.current,
           { opacity: 0 },
-          { opacity: 1, duration: 0.3, ease: "power2.out" }
+          { opacity: 1, duration: 0.3, ease: "power2.out" },
         );
 
         gsap.fromTo(
@@ -61,15 +81,15 @@ export default function Home() {
             duration: 0.4,
             stagger: 0.08,
             ease: "power2.out",
-            delay: 0.1
-          }
+            delay: 0.1,
+          },
         );
       } else {
         // Animate out
         gsap.to(mobileMenuRef.current, {
           opacity: 0,
           duration: 0.2,
-          ease: "power2.in"
+          ease: "power2.in",
         });
       }
     }
@@ -83,38 +103,31 @@ export default function Home() {
       {/* Navbar - La Isla Flotante */}
       <nav
         ref={navRef}
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full transition-all duration-500 ${
+        className={`fixed top-6 left-1/2 z-50 box-border max-w-[min(100%,calc(100vw-1.5rem))] -translate-x-1/2 rounded-full px-4 py-3 transition-all duration-500 sm:px-6 ${
           isScrolled
             ? "bg-cream/60 backdrop-blur-xl border border-moss/10 shadow-lg"
             : "bg-transparent border-transparent"
         }`}
       >
-        <div className="flex items-center gap-8">
+        <div className="flex w-full min-w-0 items-center gap-3 md:gap-4 lg:gap-5">
           <img
             src={isScrolled ? "/logo-small.svg" : "/logo-small-white.svg"}
             alt="A&B Consultores Agropecuarios"
-            className="h-6 md:h-10 w-auto object-contain"
+            className="h-6 shrink-0 md:h-10 w-auto object-contain"
           />
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden min-h-9 min-w-0 flex-1 flex-nowrap items-center justify-center gap-2 overflow-x-auto overscroll-x-contain px-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex [&::-webkit-scrollbar]:hidden xl:gap-4">
             <a
               href="#features"
-              className={`text-sm font-medium link-hover ${
+              className={`shrink-0 whitespace-nowrap text-xs font-medium link-hover xl:text-sm ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Por qué A&B
             </a>
-            <a
-              href="#services"
-              className={`text-sm font-medium link-hover ${
-                isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
-              }`}
-            >
-              Servicios
-            </a>
+
             <a
               href="#philosophy"
-              className={`text-sm font-medium link-hover ${
+              className={`shrink-0 whitespace-nowrap text-xs font-medium link-hover xl:text-sm ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
@@ -122,25 +135,25 @@ export default function Home() {
             </a>
             <a
               href="#protocol"
-              className={`text-sm font-medium link-hover ${
+              className={`shrink-0 whitespace-nowrap text-xs font-medium link-hover xl:text-sm ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Proceso
             </a>
             <a
-              href="#contact"
-              className={`text-sm font-medium link-hover ${
+              href="#services"
+              className={`shrink-0 whitespace-nowrap text-xs font-medium link-hover xl:text-sm ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
-              Contacto
+              Servicios
             </a>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0 lg:gap-3">
             <a
               href="#contact"
-              className={`cursor-pointer btn-magnetic btn-slide hidden md:block px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
+              className={`btn-magnetic btn-slide hidden cursor-pointer items-center justify-center rounded-full px-4 py-2 text-xs font-medium whitespace-nowrap lg:inline-flex xl:px-5 xl:text-sm ${
                 isScrolled
                   ? "bg-green-accent text-cream"
                   : "bg-green-accent text-cream"
@@ -150,14 +163,24 @@ export default function Home() {
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden flex items-center justify-center min-h-[20px] min-w-[20px] p-3 rounded-xl hover:bg-white/10 transition-colors relative touch-manipulation"
+              className="flex items-center justify-center min-h-[20px] min-w-[20px] p-3 rounded-xl hover:bg-white/10 transition-colors relative touch-manipulation lg:hidden"
               aria-label="Toggle menu"
             >
-              <span className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}>
-                <Menu className={`w-9 h-9 ${isScrolled ? "text-moss" : "text-cream"}`} strokeWidth={2.25} />
+              <span
+                className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-0 scale-75" : "opacity-100 scale-100"}`}
+              >
+                <Menu
+                  className={`w-9 h-9 ${isScrolled ? "text-moss" : "text-cream"}`}
+                  strokeWidth={2.25}
+                />
               </span>
-              <span className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}>
-                <X className={`w-9 h-9 ${isScrolled ? "text-moss" : "text-cream"}`} strokeWidth={2.25} />
+              <span
+                className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${mobileMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
+              >
+                <X
+                  className={`w-9 h-9 ${isScrolled ? "text-moss" : "text-cream"}`}
+                  strokeWidth={2.25}
+                />
               </span>
             </button>
           </div>
@@ -167,7 +190,10 @@ export default function Home() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div ref={mobileMenuRef} className="fixed inset-0 z-40 bg-charcoal">
-          <div ref={mobileMenuContentRef} className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+          <div
+            ref={mobileMenuContentRef}
+            className="flex flex-col items-center justify-center h-full space-y-8 px-6"
+          >
             <img
               src="/logo-white.svg"
               alt="A&B Consultores Agropecuarios"
@@ -180,13 +206,7 @@ export default function Home() {
             >
               Por qué A&B
             </a>
-            <a
-              href="#services"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
-            >
-              Servicios
-            </a>
+
             <a
               href="#philosophy"
               onClick={() => setMobileMenuOpen(false)}
@@ -202,11 +222,11 @@ export default function Home() {
               Proceso
             </a>
             <a
-              href="#contact"
+              href="#services"
               onClick={() => setMobileMenuOpen(false)}
               className="text-2xl font-sans-custom font-bold text-cream hover:text-green-accent transition-colors"
             >
-              Contacto
+              Servicios
             </a>
             <a
               href="https://wa.me/59899123456"
@@ -217,13 +237,22 @@ export default function Home() {
               <MessageCircle className="w-6 h-6" />
               WhatsApp
             </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-cream/40 text-cream px-8 py-4 rounded-full font-bold text-lg hover:bg-cream/10 transition-colors flex items-center gap-2 whitespace-nowrap"
+            >
+              <Instagram className="w-6 h-6" />
+              Instagram
+            </a>
           </div>
         </div>
       )}
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/59898266917?text=Hola%2C%20me%20gustar%C3%ADa%20contratar%20sus%20servicios"
+        href="https://wa.me/+59899126042?text=Hola%2C%20me%20gustar%C3%ADa%20contratar%20sus%20servicios"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-green-accent text-cream w-14 h-14 rounded-full shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
@@ -287,8 +316,11 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
         backgroundPosition: "center",
       }}
     >
-      <div ref={heroContentRef} className="container mx-auto px-6 pb-16 pt-20 md:pt-0">
-        <div className="max-w-4xl mt-4 md:mt-8">
+      <div
+        ref={heroContentRef}
+        className="container mx-auto px-6 pb-16 pt-20 md:pt-0"
+      >
+        <div className="max-w-5xl mt-4 md:mt-8">
           {/* Trust Badge */}
           <div className="hero-text mb-6 flex items-center gap-2">
             <div className="w-2 h-2 bg-green-accent rounded-full animate-pulse" />
@@ -298,14 +330,15 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           </div>
 
           <h1 className="text-4xl md:text-7xl lg:text-8xl font-sans-custom font-bold text-cream hero-text">
-            Gestión ganadera
+            Gestión agropecuaria
           </h1>
           <h2 className="text-5xl md:text-8xl lg:text-9xl font-serif-custom italic text-cream hero-text leading-tighter">
             basada en{" "}
             <span className="text-green-accent font-bold">datos.</span>
           </h2>
           <p className="text-cream/95 text-base md:text-xl mt-8 max-w-2xl hero-text leading-relaxed">
-            En A&B Consultores ayudamos a productores ganaderos a transformar información del predio en decisiones técnicas claras y rentables.
+            En A&B Consultores ayudamos a productores ganaderos a transformar
+            información del predio en decisiones técnicas claras y rentables.
           </p>
           <div className="mt-10 hero-text flex flex-col sm:flex-row gap-4">
             <a
@@ -321,22 +354,6 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             >
               Ver servicios
             </a>
-          </div>
-
-          {/* Social Proof Stats */}
-          <div className="hero-text mt-12 pt-8 border-t border-cream/20 grid grid-cols-3 gap-6 md:gap-8">
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-cream">+100</div>
-              <div className="text-cream/70 text-xs md:text-base whitespace-nowrap">Productores asesorados</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-cream">95%</div>
-              <div className="text-cream/70 text-xs md:text-base whitespace-nowrap">Satisfacción</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-cream">+20%</div>
-              <div className="text-cream/70 text-xs md:text-base whitespace-nowrap">Mejora promedio</div>
-            </div>
           </div>
         </div>
       </div>
@@ -370,18 +387,21 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     "> Generando recomendaciones...",
   ];
 
-  const followUpSteps = ["L", "M", "M", "J", "V", "S", "D"];
   const [activeDay, setActiveDay] = useState<number | null>(null);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0, visible: false });
+  const [cursorPosition, setCursorPosition] = useState({
+    x: 0,
+    y: 0,
+    visible: false,
+  });
   const [isClicking, setIsClicking] = useState(false);
   const weeklyProgress = [
-    { day: "L", completed: true, progress: 85 },
-    { day: "M", completed: true, progress: 92 },
-    { day: "X", completed: false, progress: 45 },
-    { day: "J", completed: false, progress: 30 },
-    { day: "V", completed: false, progress: 15 },
-    { day: "S", completed: false, progress: 0 },
-    { day: "D", completed: false, progress: 0 },
+    { day: "L", fullDay: "Lunes", completed: true, progress: 85 },
+    { day: "M", fullDay: "Martes", completed: true, progress: 92 },
+    { day: "X", fullDay: "Miércoles", completed: false, progress: 45 },
+    { day: "J", fullDay: "Jueves", completed: false, progress: 30 },
+    { day: "V", fullDay: "Viernes", completed: false, progress: 15 },
+    { day: "S", fullDay: "Sábado", completed: false, progress: 0 },
+    { day: "D", fullDay: "Domingo", completed: false, progress: 0 },
   ];
 
   useEffect(() => {
@@ -421,15 +441,20 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
       if (!followUpElement) return;
 
       const playAnimation = async () => {
-        // Random day selection (Monday to Friday for work days)
-        const randomDay = Math.floor(Math.random() * 5); // 0-4 for L-V
+        // Random day selection (Monday to Sunday)
+        // Elegir un día aleatorio *distinto* del día activo anterior, si hay uno
+        let nextDay;
+        do {
+          nextDay = Math.floor(Math.random() * 7); // 0-6 for L-D
+        } while (nextDay === activeDay);
+        const randomDay = nextDay;
 
         // Step 1: Cursor enters from left
         setCursorPosition({ x: 10, y: 50, visible: true });
         await sleep(300);
 
         // Step 2: Move to the selected day
-        const dayX = 10 + (randomDay * 12) + 6; // Calculate position
+        const dayX = 10 + randomDay * 12 + 6; // Calculate position
         setCursorPosition({ x: dayX, y: 50, visible: true });
         await sleep(400);
 
@@ -467,18 +492,15 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
   }, []);
 
   return (
-    <section
-      ref={ref}
-      id="features"
-      className="py-24 px-6 bg-cream"
-    >
+    <section ref={ref} id="features" className="py-24 px-6 bg-cream">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Por qué trabajar con A&B
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Acompañamos al productor con una mirada técnica, práctica y enfocada en mejorar la gestión del establecimiento.
+            Acompañamos al productor con una mirada técnica, práctica y enfocada
+            en mejorar la gestión del establecimiento.
           </p>
         </div>
 
@@ -492,8 +514,12 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             <div className="relative h-40 overflow-hidden">
               {analysisCards.map((card, index) => {
                 const isActive = index === shufflerIndex;
-                const isNext = index === (shufflerIndex + 1) % analysisCards.length;
-                const isPrev = index === (shufflerIndex - 1 + analysisCards.length) % analysisCards.length;
+                const isNext =
+                  index === (shufflerIndex + 1) % analysisCards.length;
+                const isPrev =
+                  index ===
+                  (shufflerIndex - 1 + analysisCards.length) %
+                    analysisCards.length;
 
                 return (
                   <div
@@ -502,10 +528,10 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                       isActive
                         ? "translate-y-0 opacity-100 scale-100 z-10"
                         : isNext
-                        ? "translate-y-full opacity-0 scale-90 z-0"
-                        : isPrev
-                        ? "-translate-y-full opacity-0 scale-90 z-0"
-                        : "opacity-0 scale-90 z-0"
+                          ? "translate-y-full opacity-0 scale-90 z-0"
+                          : isPrev
+                            ? "-translate-y-full opacity-0 scale-90 z-0"
+                            : "opacity-0 scale-90 z-0"
                     }`}
                     style={{
                       willChange: "transform, opacity",
@@ -527,7 +553,9 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             <div className="h-40 bg-moss/10 rounded-xl border border-moss/20 p-4 flex flex-col">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-2 h-2 bg-green-accent rounded-full animate-pulse" />
-                <span className="text-moss/60 text-xs font-mono-custom">Retroalimentación en tiempo real</span>
+                <span className="text-moss/60 text-xs font-mono-custom">
+                  Retroalimentación en tiempo real
+                </span>
               </div>
               <div className="flex-1 font-mono-custom text-sm text-moss overflow-hidden">
                 <span>{typewriterText}</span>
@@ -553,7 +581,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                   style={{
                     left: `${cursorPosition.x}%`,
                     top: `${cursorPosition.y}%`,
-                    transform: `translate(-50%, -50%) ${isClicking ? 'scale(0.95)' : 'scale(1)'}`,
+                    transform: `translate(-50%, -50%) ${isClicking ? "scale(0.95)" : "scale(1)"}`,
                   }}
                 >
                   {/* Cursor SVG */}
@@ -562,7 +590,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    className={`transition-transform duration-150 ${isClicking ? 'scale-90' : 'scale-100'}`}
+                    className={`transition-transform duration-150 ${isClicking ? "scale-90" : "scale-100"}`}
                   >
                     <path
                       d="M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87c.45 0 .67-.54.35-.85L6.35 2.86a.5.5 0 0 0-.85.35Z"
@@ -586,14 +614,17 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               {/* Weekly Days Grid */}
               <div className="flex justify-between mb-4 relative">
                 {weeklyProgress.map((day, index) => (
-                  <div key={index} className="flex-1 flex flex-col items-center gap-1">
+                  <div
+                    key={index}
+                    className="flex-1 flex flex-col items-center gap-1"
+                  >
                     <div
                       className={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-bold transition-all duration-300 ${
                         activeDay === index
                           ? "bg-green-accent text-cream scale-95 shadow-lg"
                           : day.completed
-                          ? "bg-moss/20 text-moss"
-                          : "bg-moss/5 text-moss/50"
+                            ? "bg-moss/20 text-moss"
+                            : "bg-moss/5 text-moss/50"
                       }`}
                     >
                       {day.day}
@@ -615,7 +646,7 @@ function FeaturesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-moss/60 text-xs font-mono-custom text-center">
                   {activeDay !== null
-                    ? `Actualizando ${weeklyProgress[activeDay].day}...`
+                    ? `Actualizando ${weeklyProgress[activeDay].fullDay}...`
                     : "Sincronizando datos"}
                 </div>
               </div>
@@ -654,7 +685,9 @@ function FeatureCard({
       <div className="p-6">
         <div className="flex items-center gap-3 mb-4">
           {icon}
-          <h3 className="text-xl font-sans-custom font-bold text-moss">{title}</h3>
+          <h3 className="text-xl font-sans-custom font-bold text-moss">
+            {title}
+          </h3>
         </div>
         <p className="text-charcoal/60 text-sm mb-6">{description}</p>
         {children}
@@ -692,7 +725,7 @@ function PhilosophySection({ ref }: { ref: React.RefObject<HTMLElement> }) {
       className="relative py-32 px-6 overflow-hidden"
       style={{
         backgroundImage:
-          "linear-gradient(to right, rgba(26, 26, 26, 0.97) 0%, rgba(46, 64, 54, 0.95) 100%), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80')",
+          "linear-gradient(to right, rgba(26, 26, 26, 0.97) 0%, rgba(46, 64, 54, 0.95) 100%), url('https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1920&q=80')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
@@ -701,17 +734,24 @@ function PhilosophySection({ ref }: { ref: React.RefObject<HTMLElement> }) {
       <div ref={textRef} className="container mx-auto max-w-5xl">
         <div className="philosophy-text mb-12">
           <p className="text-cream/80 text-xl md:text-2xl font-sans-custom leading-relaxed">
-            En <strong>A&B Consultores</strong> somos dos licenciados en gestión agropecuaria: <strong>Lic. Gastón Almada</strong> y <strong>Lic. Jorge Bado</strong>.
+            En <strong>A&B Consultores</strong> somos dos licenciados en gestión
+            agropecuaria: <strong>Lic. Gastón Almada</strong> y{" "}
+            <strong>Lic. Jorge Bado</strong>.
           </p>
         </div>
         <div className="philosophy-text mb-12">
           <p className="text-cream/80 text-lg md:text-xl font-sans-custom leading-relaxed">
-            Acompañamos a productores y empresas rurales con una mirada técnica, clara y enfocada en la toma de decisiones. Nuestro trabajo combina análisis productivo, orden de información, interpretación de indicadores y seguimiento del sistema para transformar datos del predio en acciones concretas.
+            Acompañamos a productores y empresas rurales con una mirada técnica,
+            clara y enfocada en la toma de decisiones. Nuestro trabajo combina
+            análisis productivo, orden de información, interpretación de
+            indicadores y seguimiento del sistema para transformar datos del
+            predio en acciones concretas.
           </p>
         </div>
         <div className="philosophy-text">
           <p className="text-4xl md:text-6xl lg:text-7xl font-serif-custom italic text-cream leading-tight">
-            Asesoramos a todo tipo de productores ganaderos en todo <span className="text-green-accent font-bold">Uruguay.</span>
+            Asesoramos a una amplia variedad de productores en todo el{" "}
+            <span className="text-green-accent font-bold">Uruguay.</span>
           </p>
         </div>
       </div>
@@ -780,25 +820,22 @@ function ProtocolSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
           },
           stagger: 0.15,
           ease: "power2.inOut",
-        }
+        },
       );
     }, cardsRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      ref={ref}
-      id="protocol"
-      className="py-24 px-6 bg-cream"
-    >
+    <section ref={ref} id="protocol" className="py-24 px-6 bg-cream">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Cómo trabajamos
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Un proceso claro, técnico y profesional para convertir datos del predio en decisiones concretas.
+            Un proceso claro, técnico y profesional para convertir datos del
+            predio en decisiones concretas.
           </p>
         </div>
 
@@ -827,11 +864,16 @@ function ProtocolCard({
         <div className="font-mono-custom text-green-accent text-3xl md:text-4xl font-bold mb-4">
           {number}
         </div>
-        <h3 className="text-xl md:text-2xl font-sans-custom font-bold mb-3">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-sans-custom font-bold mb-3">
+          {title}
+        </h3>
         <p className="text-cream/80 text-base">{description}</p>
       </div>
       <div className="absolute right-8 bottom-8 w-16 h-16 opacity-10">
-        <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_15s_linear_infinite]">
+        <svg
+          viewBox="0 0 100 100"
+          className="w-full h-full animate-[spin_15s_linear_infinite]"
+        >
           <circle
             cx="50"
             cy="50"
@@ -857,22 +899,19 @@ function ProtocolCard({
 // Services Section
 function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
   return (
-    <section
-      ref={ref}
-      id="services"
-      className="py-24 px-6 bg-cream"
-    >
+    <section ref={ref} id="services" className="py-24 px-6 bg-cream">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-sans-custom font-bold text-moss mb-4">
             Servicios
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Diseñados para adaptarse al nivel de análisis y seguimiento que necesita cada establecimiento.
+            Diseñados para adaptarse al nivel de análisis y seguimiento que
+            necesita cada establecimiento.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3 lg:items-stretch">
           {/* Servicio Funcional */}
           <ServiceCard
             title="Funcional"
@@ -911,8 +950,7 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             description="Diagnóstico integral del sistema ganadero con visión productiva, económica y estratégica."
             icon={<Star className="w-12 h-12 text-green-accent" />}
             features={[
-              "Todo lo de Funcional",
-              "Todo lo de Indicadores",
+              "Servicio funcional e indicadores incluidos",
               "Evaluación integral del sistema",
               "Recomendaciones personalizadas",
               "Seguimiento técnico continuo",
@@ -923,9 +961,6 @@ function ServicesSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             price="$700"
           />
         </div>
-        <p className="text-center text-charcoal/60 text-sm mt-8">
-          *Precios mensuales según tamaño del establecimiento. Consultar por opciones personalizadas.
-        </p>
       </div>
     </section>
   );
@@ -953,38 +988,50 @@ function ServiceCard({
   const handleClick = () => {
     if (servicio) {
       // Update URL with service parameter and scroll to contact
-      window.history.pushState({ servicio }, "", `?servicio=${servicio}#contact`);
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(
+        { servicio },
+        "",
+        `?servicio=${servicio}#contact`,
+      );
+      document
+        .getElementById("contact")
+        ?.scrollIntoView({ behavior: "smooth" });
       // Dispatch custom event to notify ContactSection
-      window.dispatchEvent(new CustomEvent("servicioSelected", { detail: servicio }));
+      window.dispatchEvent(
+        new CustomEvent("servicioSelected", { detail: servicio }),
+      );
     }
   };
 
   return (
     <div
-      className={`service-card bg-cream rounded-[3rem] p-8 border-2 transition-all hover:shadow-xl ${
-        premium
-          ? "border-green-accent shadow-lg"
-          : "border-moss/10"
+      className={`service-card flex h-full flex-col bg-cream rounded-[3rem] p-8 border-2 transition-all hover:shadow-xl ${
+        premium ? "border-green-accent shadow-lg" : "border-moss/10"
       }`}
     >
-      <div className="flex items-center gap-2 md:gap-4 mb-6 flex-wrap">
-        {icon}
-        <h3 className="text-xl md:text-2xl font-sans-custom font-bold text-moss whitespace-nowrap">{title}</h3>
+      <div className="mb-6 flex flex-wrap items-center gap-2 md:gap-4">
+        <div className="flex min-w-0 flex-nowrap items-center gap-2 md:gap-4">
+          <span className="inline-flex shrink-0">{icon}</span>
+          <h3 className="text-xl md:text-2xl font-sans-custom font-bold text-moss whitespace-nowrap">
+            {title}
+          </h3>
+        </div>
         {premium && (
           <span className="bg-green-accent text-cream text-xs font-bold px-3 py-1 rounded-full shrink-0">
             Premium
           </span>
         )}
       </div>
-      {price && (
+      {/* {price && (
         <div className="mb-4">
-          <span className="text-3xl md:text-4xl font-sans-custom font-bold text-green-accent">{price}</span>
+          <span className="text-3xl md:text-4xl font-sans-custom font-bold text-green-accent">
+            {price}
+          </span>
           <span className="text-sm text-charcoal/60">/mes</span>
         </div>
-      )}
-      <p className="text-charcoal/80 text-lg mb-6">{description}</p>
-      <ul className="space-y-3 mb-8">
+      )} */}
+      <p className="mb-6 text-lg text-charcoal/80">{description}</p>
+      <ul className="mb-0 space-y-3">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-2 text-moss/80">
             <div className="w-1.5 h-1.5 bg-green-accent rounded-full mt-2 shrink-0" />
@@ -992,9 +1039,11 @@ function ServiceCard({
           </li>
         ))}
       </ul>
+      {/* Espacio flexible alinea los botones entre tarjetas; min-h respeta margen mínimo sobre el CTA */}
+      <div className="min-h-8 flex-1 basis-0" aria-hidden />
       <button
         onClick={handleClick}
-        className={`w-full btn-magnetic px-6 py-3 rounded-full font-medium text-lg transition-colors inline-flex items-center justify-center cursor-pointer whitespace-nowrap ${
+        className={`btn-magnetic inline-flex w-full shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-full px-6 py-3 text-lg font-medium transition-colors ${
           premium
             ? "bg-green-accent text-cream hover:bg-green-accent/90"
             : "border-2 border-moss text-moss hover:bg-moss hover:text-cream"
@@ -1035,7 +1084,8 @@ function ResultsSection() {
             Resultados que puede esperar
           </h2>
           <p className="text-cream/80 text-lg max-w-2xl mx-auto">
-            En A&B Consultores ayudamos al productor a entender mejor su sistema y tomar decisiones más claras.
+            En A&B Consultores ayudamos al productor a entender mejor su sistema
+            y tomar decisiones más claras.
           </p>
         </div>
 
@@ -1044,32 +1094,50 @@ function ResultsSection() {
             <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <FileText className="w-8 h-8 text-green-accent" />
             </div>
-            <h3 className="text-xl font-sans-custom font-bold mb-2">Mayor control</h3>
-            <p className="text-cream/70">Información organizada para entender qué está pasando en el establecimiento.</p>
+            <h3 className="text-xl font-sans-custom font-bold mb-2">
+              Mayor control
+            </h3>
+            <p className="text-cream/70">
+              Información organizada para entender qué está pasando en el
+              establecimiento.
+            </p>
           </div>
 
           <div className="result-item text-center">
             <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Target className="w-8 h-8 text-green-accent" />
             </div>
-            <h3 className="text-xl font-sans-custom font-bold mb-2">Mejores decisiones</h3>
-            <p className="text-cream/70">Datos claros para tomar decisiones sobre manejo, carga y producción.</p>
+            <h3 className="text-xl font-sans-custom font-bold mb-2">
+              Mejores decisiones
+            </h3>
+            <p className="text-cream/70">
+              Datos claros para tomar decisiones sobre manejo, carga y
+              producción.
+            </p>
           </div>
 
           <div className="result-item text-center">
             <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <BarChart3 className="w-8 h-8 text-green-accent" />
             </div>
-            <h3 className="text-xl font-sans-custom font-bold mb-2">Análisis económico</h3>
-            <p className="text-cream/70">Comprender costos, ingresos y resultados del establecimiento.</p>
+            <h3 className="text-xl font-sans-custom font-bold mb-2">
+              Análisis económico
+            </h3>
+            <p className="text-cream/70">
+              Comprender costos, ingresos y resultados del establecimiento.
+            </p>
           </div>
 
           <div className="result-item text-center">
             <div className="w-16 h-16 bg-green-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <TrendingUp className="w-8 h-8 text-green-accent" />
             </div>
-            <h3 className="text-xl font-sans-custom font-bold mb-2">Gestión profesional</h3>
-            <p className="text-cream/70">Herramientas y análisis para mejorar la gestión ganadera.</p>
+            <h3 className="text-xl font-sans-custom font-bold mb-2">
+              Gestión profesional
+            </h3>
+            <p className="text-cream/70">
+              Herramientas y análisis para mejorar la gestión ganadera.
+            </p>
           </div>
         </div>
       </div>
@@ -1088,7 +1156,10 @@ function ContactSection() {
     mensaje: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error" | null; message: string }>({
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({
     type: null,
     message: "",
   });
@@ -1116,7 +1187,7 @@ function ContactSection() {
       const urlParams = new URLSearchParams(window.location.search);
       const servicioParam = urlParams.get("servicio");
       if (servicioParam) {
-        setFormData(prev => ({ ...prev, servicio: servicioParam }));
+        setFormData((prev) => ({ ...prev, servicio: servicioParam }));
       }
     };
 
@@ -1130,21 +1201,31 @@ function ContactSection() {
 
     // Listen for custom service selection event
     const handleServicioSelected = (e: CustomEvent) => {
-      setFormData(prev => ({ ...prev, servicio: e.detail }));
+      setFormData((prev) => ({ ...prev, servicio: e.detail }));
     };
 
     window.addEventListener("hashchange", handleUrlChange);
     window.addEventListener("popstate", handleUrlChange);
-    window.addEventListener("servicioSelected", handleServicioSelected as EventListener);
+    window.addEventListener(
+      "servicioSelected",
+      handleServicioSelected as EventListener,
+    );
 
     return () => {
       window.removeEventListener("hashchange", handleUrlChange);
       window.removeEventListener("popstate", handleUrlChange);
-      window.removeEventListener("servicioSelected", handleServicioSelected as EventListener);
+      window.removeEventListener(
+        "servicioSelected",
+        handleServicioSelected as EventListener,
+      );
     };
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -1170,7 +1251,9 @@ function ContactSection() {
       if (response.ok) {
         setSubmitStatus({
           type: "success",
-          message: data.message || "¡Mensaje enviado correctamente! Te contactaremos pronto."
+          message:
+            data.message ||
+            "¡Mensaje enviado correctamente! Te contactaremos pronto.",
         });
         setFormData({
           nombre: "",
@@ -1182,13 +1265,16 @@ function ContactSection() {
       } else {
         setSubmitStatus({
           type: "error",
-          message: data.error || "Hubo un error al enviar el mensaje. Por favor intenta nuevamente."
+          message:
+            data.error ||
+            "Hubo un error al enviar el mensaje. Por favor intenta nuevamente.",
         });
       }
     } catch (error) {
       setSubmitStatus({
         type: "error",
-        message: "Hubo un error al enviar el mensaje. Por favor intenta nuevamente."
+        message:
+          "Hubo un error al enviar el mensaje. Por favor intenta nuevamente.",
       });
     } finally {
       setIsSubmitting(false);
@@ -1203,14 +1289,18 @@ function ContactSection() {
             Solicitar contacto
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Dejá tus datos y contanos qué necesitás analizar en tu establecimiento.
+            Dejá tus datos y contanos qué necesitás analizar en tu
+            establecimiento.
           </p>
         </div>
 
         <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="contact-element">
-              <label htmlFor="nombre" className="block text-moss font-medium mb-2">
+              <label
+                htmlFor="nombre"
+                className="block text-moss font-medium mb-2"
+              >
                 Nombre
               </label>
               <input
@@ -1226,7 +1316,10 @@ function ContactSection() {
             </div>
 
             <div className="contact-element">
-              <label htmlFor="telefono" className="block text-moss font-medium mb-2">
+              <label
+                htmlFor="telefono"
+                className="block text-moss font-medium mb-2"
+              >
                 Teléfono
               </label>
               <input
@@ -1241,7 +1334,10 @@ function ContactSection() {
             </div>
 
             <div className="contact-element">
-              <label htmlFor="email" className="block text-moss font-medium mb-2">
+              <label
+                htmlFor="email"
+                className="block text-moss font-medium mb-2"
+              >
                 Email
               </label>
               <input
@@ -1257,7 +1353,10 @@ function ContactSection() {
             </div>
 
             <div className="contact-element">
-              <label htmlFor="servicio" className="block text-moss font-medium mb-2">
+              <label
+                htmlFor="servicio"
+                className="block text-moss font-medium mb-2"
+              >
                 Servicio de interés
               </label>
               <select
@@ -1275,7 +1374,10 @@ function ContactSection() {
             </div>
 
             <div className="contact-element">
-              <label htmlFor="mensaje" className="block text-moss font-medium mb-2">
+              <label
+                htmlFor="mensaje"
+                className="block text-moss font-medium mb-2"
+              >
                 Mensaje
               </label>
               <textarea
@@ -1291,11 +1393,13 @@ function ContactSection() {
             </div>
 
             {submitStatus.type && (
-              <div className={`contact-element p-4 rounded-xl ${
-                submitStatus.type === "success"
-                  ? "bg-green-accent/10 text-green-accent border border-green-accent/30"
-                  : "bg-red-100 text-red-700 border border-red-300"
-              }`}>
+              <div
+                className={`contact-element p-4 rounded-xl ${
+                  submitStatus.type === "success"
+                    ? "bg-green-accent/10 text-green-accent border border-green-accent/30"
+                    : "bg-red-100 text-red-700 border border-red-300"
+                }`}
+              >
                 <p className="font-medium">{submitStatus.message}</p>
               </div>
             )}
@@ -1307,7 +1411,9 @@ function ContactSection() {
                 className="btn-magnetic w-full bg-green-accent text-cream px-8 py-4 rounded-full font-medium text-lg hover:bg-green-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
               >
                 {isSubmitting ? "Enviando..." : "Enviar consulta"}
-                {!isSubmitting && <ArrowRight className="inline-block ml-2 w-5 h-5" />}
+                {!isSubmitting && (
+                  <ArrowRight className="inline-block ml-2 w-5 h-5" />
+                )}
               </button>
             </div>
           </form>
@@ -1323,7 +1429,7 @@ function Footer() {
     <footer className="bg-charcoal text-cream rounded-t-[4rem] pt-16 pb-8 px-6">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <div className="mb-4">
               <img
                 src="/logo-small-white.svg"
@@ -1331,37 +1437,31 @@ function Footer() {
                 className="h-16 md:h-20 w-auto object-contain"
               />
             </div>
-            <p className="text-cream/60 text-lg max-w-md">
-              Consultoría agropecuaria y gestión ganadera basada en datos.
+            <p className="text-cream/60 text-lg max-w-xs">
+              Consultoría agropecuaria y gestión basada en datos.
             </p>
-          </div>
-          <div>
-            <h4 className="font-sans-custom font-bold mb-4">Enlaces</h4>
-            <ul className="space-y-2 text-cream/60">
-              <li>
-                <a href="#features" className="link-hover">Por qué A&B</a>
-              </li>
-              <li>
-                <a href="#philosophy" className="link-hover">Quiénes somos</a>
-              </li>
-              <li>
-                <a href="#protocol" className="link-hover">Cómo trabajamos</a>
-              </li>
-              <li>
-                <a href="#services" className="link-hover">Servicios</a>
-              </li>
-            </ul>
           </div>
           <div>
             <h4 className="font-sans-custom font-bold mb-4">Contacto</h4>
             <ul className="space-y-2 text-cream/60">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>contacto@abconsultores.uy</span>
+                <a href="mailto:almadabadoconsultores@gmail.com" className="link-hover">almadabadoconsultores@gmail.com</a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+598 98 266 917</span>
+                <a href="tel:+59899126042" className="link-hover">+598 99 126 042</a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Instagram className="w-4 h-4 shrink-0" />
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-hover break-all"
+                >
+                  {INSTAGRAM_HANDLE}
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />

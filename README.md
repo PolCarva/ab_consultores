@@ -1,6 +1,6 @@
 # ABC – Almada & Bado Consultores Agropecuarios
 
-Landing page cinemática para ABC – Almada & Bado Consultores Agropecuarios, construida con diseño de alta fidelidad y animaciones profesionales. Consultoría agropecuaria y gestión ganadera basada en datos.
+Landing page cinemática para ABC – Almada & Bado Consultores Agropecuarios, construida con diseño de alta fidelidad y animaciones profesionales. Consultoría agropecuaria y gestión basada en datos.
 
 ## 🎨 Sistema de Diseño - Organic Tech (Ajustado para Ganadería)
 
