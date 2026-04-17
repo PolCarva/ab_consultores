@@ -337,8 +337,9 @@ function HeroSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
             <span className="text-green-accent font-bold">datos.</span>
           </h2>
           <p className="text-cream/95 text-base md:text-xl mt-8 max-w-2xl hero-text leading-relaxed">
-            En A&B Consultores ayudamos a productores ganaderos a transformar
-            información del predio en decisiones técnicas claras y rentables.
+            En A&B Consultores ayudamos a productores agropecuarios a
+            transformar información del establecimiento en decisiones técnicas
+            claras y rentables.
           </p>
           <div className="mt-10 hero-text flex flex-col sm:flex-row gap-4">
             <a
@@ -1446,11 +1447,18 @@ function Footer() {
             <ul className="space-y-2 text-cream/60">
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <a href="mailto:almadabadoconsultores@gmail.com" className="link-hover">almadabadoconsultores@gmail.com</a>
+                <a
+                  href="mailto:almadabadoconsultores@gmail.com"
+                  className="link-hover"
+                >
+                  almadabadoconsultores@gmail.com
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <a href="tel:+59899126042" className="link-hover">+598 99 126 042</a>
+                <a href="tel:+59899126042" className="link-hover">
+                  +598 99 126 042
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Instagram className="w-4 h-4 shrink-0" />
