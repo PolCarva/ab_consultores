@@ -24,7 +24,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-const INSTAGRAM_HANDLE = "ab.gestionganadera";
+const INSTAGRAM_HANDLE = "ayb.gestionagro";
 const INSTAGRAM_URL = `https://www.instagram.com/${encodeURIComponent(INSTAGRAM_HANDLE)}`;
 
 // Color Constants - Ajustados para predominancia del verde
