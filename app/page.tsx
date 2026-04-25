@@ -20,12 +20,15 @@ import {
   X,
   MessageCircle,
   Instagram,
+  Facebook,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const INSTAGRAM_HANDLE = "ayb.gestionagro";
 const INSTAGRAM_URL = `https://www.instagram.com/${encodeURIComponent(INSTAGRAM_HANDLE)}`;
+const FACEBOOK_URL =
+  "https://www.facebook.com/profile.php?id=61568000957291";
 
 // Color Constants - Ajustados para predominancia del verde
 const colors = {
@@ -245,6 +248,15 @@ export default function Home() {
             >
               <Instagram className="w-6 h-6" />
               Instagram
+            </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-2 border-cream/40 text-cream px-8 py-4 rounded-full font-bold text-lg hover:bg-cream/10 transition-colors flex items-center gap-2 whitespace-nowrap"
+            >
+              <Facebook className="w-6 h-6" />
+              Facebook
             </a>
           </div>
         </div>
@@ -768,7 +780,8 @@ function ProtocolSection({ ref }: { ref: React.RefObject<HTMLElement> }) {
     {
       number: "01",
       title: "Primer contacto",
-      description: "Desde la web, WhatsApp, Instagram o correo electrónico",
+      description:
+        "Desde la web, WhatsApp, Instagram, Facebook o correo electrónico",
     },
     {
       number: "02",
@@ -1469,6 +1482,17 @@ function Footer() {
                   className="link-hover break-all"
                 >
                   {INSTAGRAM_HANDLE}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Facebook className="w-4 h-4 shrink-0" />
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-hover break-all"
+                >
+                  Facebook
                 </a>
               </li>
               <li className="flex items-center gap-2">
