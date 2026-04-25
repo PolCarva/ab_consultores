@@ -1492,7 +1492,7 @@ function Footer() {
                   rel="noopener noreferrer"
                   className="link-hover break-all"
                 >
-                  Facebook
+                  AyB - Consultoría Agropecuaria
                 </a>
               </li>
               <li className="flex items-center gap-2">
