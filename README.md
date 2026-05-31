@@ -91,7 +91,16 @@ npm run dev      # Inicia servidor de desarrollo
 npm run build    # Construye para producción
 npm run start    # Inicia servidor de producción
 npm run lint     # Ejecuta ESLint
+npm run db:migrate  # Aplica migraciones (Neon/Postgres)
+npm run db:seed     # Crea el usuario admin
 ```
+
+## Noticias (admin)
+
+1. Copiá `.env.example` a `.env` y completá `DATABASE_URL` (Neon), `AUTH_SECRET`, `ADMIN_EMAIL` y `ADMIN_PASSWORD`.
+2. `npm run db:migrate` y `npm run db:seed`.
+3. En desarrollo: `npm run dev` → panel en `/admin/login`, listado público en `/noticias`.
+4. En **Vercel**: variables de entorno anteriores + `BLOB_READ_WRITE_TOKEN` (Storage). Build command: `npm run vercel-build`.
 
 ## 🌐 Imágenes
 

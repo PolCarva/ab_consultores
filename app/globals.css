@@ -167,6 +167,66 @@ body {
   overflow-x: hidden;
 }
 
+/* Contenido de noticias (editor + detalle) */
+.prose-noticias {
+  color: var(--charcoal);
+  line-height: 1.75;
+  font-family: var(--font-jakarta-sans), var(--font-outfit), sans-serif;
+}
+
+.prose-noticias h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--moss);
+}
+
+.prose-noticias p {
+  margin-bottom: 1rem;
+}
+
+.prose-noticias ul,
+.prose-noticias ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.prose-noticias ul {
+  list-style: disc;
+}
+
+.prose-noticias ol {
+  list-style: decimal;
+}
+
+.prose-noticias blockquote {
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--green-accent);
+  padding-left: 1rem;
+  font-style: italic;
+  color: color-mix(in srgb, var(--charcoal) 75%, transparent);
+}
+
+.prose-noticias a {
+  color: var(--green-accent);
+  text-decoration: underline;
+}
+
+.prose-noticias img {
+  max-width: 100%;
+  border-radius: 1rem;
+  margin: 1.5rem 0;
+}
+
+.prose-noticias .is-empty::before {
+  color: color-mix(in srgb, var(--charcoal) 40%, transparent);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

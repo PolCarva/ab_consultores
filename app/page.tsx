@@ -1456,6 +1456,14 @@ function Footer() {
             </p>
           </div>
           <div>
+            <h4 className="font-sans-custom font-bold mb-4">Enlaces</h4>
+            <ul className="space-y-2 text-cream/60 mb-6">
+              <li>
+                <a href="/noticias" className="link-hover font-medium text-cream/90">
+                  Noticias
+                </a>
+              </li>
+            </ul>
             <h4 className="font-sans-custom font-bold mb-4">Contacto</h4>
             <ul className="space-y-2 text-cream/60">
               <li className="flex items-center gap-2">
