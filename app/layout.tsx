@@ -50,6 +50,7 @@ export default function RootLayout({
       <body
         className={`${jakartaSans.variable} ${outfit.variable} ${cormorant.variable} ${plexMono.variable} antialiased`}
       >
+        <div className="noise-overlay" aria-hidden />
         {children}
       </body>
     </html>

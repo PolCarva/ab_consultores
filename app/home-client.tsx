@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LatestNewsHome, { type LatestNewsArticle } from "@/components/home/LatestNewsHome";
 import {
   Calendar,
   ChevronRight,
@@ -42,7 +43,11 @@ const colors = {
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function HomeClient({ latestNews }: { latestNews?: React.ReactNode }) {
+export default function HomeClient({
+  latestNewsArticles = [],
+}: {
+  latestNewsArticles?: LatestNewsArticle[];
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -100,28 +105,25 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
 
   return (
     <div className="min-h-screen bg-cream">
-      {/* Noise Overlay */}
-      <div className="noise-overlay" />
-
       {/* Navbar - La Isla Flotante */}
       <nav
         ref={navRef}
-        className={`fixed top-5 left-1/2 z-50 box-border max-w-[min(100%,calc(100vw-1rem))] -translate-x-1/2 rounded-full px-5 py-3.5 transition-all duration-500 sm:px-7 sm:py-4 ${
+        className={`fixed top-5 left-1/2 z-50 box-border w-[calc(100%-1.5rem)] max-w-[90rem] -translate-x-1/2 rounded-full px-4 py-3 transition-all duration-500 sm:px-6 sm:py-3.5 xl:px-8 xl:py-4 ${
           isScrolled
             ? "bg-cream/60 backdrop-blur-xl border border-moss/10 shadow-lg"
             : "bg-transparent border-transparent"
         }`}
       >
-        <div className="flex w-full min-w-0 items-center gap-3 md:gap-4 lg:gap-5">
+        <div className="flex w-full items-center gap-3 sm:gap-4 xl:gap-6">
           <img
             src={isScrolled ? "/logo-small.svg" : "/logo-small-white.svg"}
             alt="A&B Consultores Agropecuarios"
-            className="h-7 shrink-0 md:h-11 w-auto object-contain"
+            className="h-7 w-auto shrink-0 object-contain sm:h-9 xl:h-10"
           />
-          <div className="hidden min-h-10 min-w-0 flex-1 flex-nowrap items-center justify-center gap-2.5 overflow-x-auto overscroll-x-contain px-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:flex [&::-webkit-scrollbar]:hidden xl:gap-5">
+          <div className="hidden flex-1 items-center justify-center gap-3 xl:flex xl:gap-5 2xl:gap-6">
             <a
               href="#features"
-              className={`shrink-0 whitespace-nowrap text-sm font-medium link-hover xl:text-base ${
+              className={`whitespace-nowrap text-sm font-medium link-hover xl:text-[0.95rem] 2xl:text-base ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
@@ -130,7 +132,7 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
 
             <a
               href="#philosophy"
-              className={`shrink-0 whitespace-nowrap text-sm font-medium link-hover xl:text-base ${
+              className={`whitespace-nowrap text-sm font-medium link-hover xl:text-[0.95rem] 2xl:text-base ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
@@ -138,7 +140,7 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
             </a>
             <a
               href="#protocol"
-              className={`shrink-0 whitespace-nowrap text-sm font-medium link-hover xl:text-base ${
+              className={`whitespace-nowrap text-sm font-medium link-hover xl:text-[0.95rem] 2xl:text-base ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
@@ -146,7 +148,7 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
             </a>
             <a
               href="#services"
-              className={`shrink-0 whitespace-nowrap text-sm font-medium link-hover xl:text-base ${
+              className={`whitespace-nowrap text-sm font-medium link-hover xl:text-[0.95rem] 2xl:text-base ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
@@ -154,17 +156,17 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
             </a>
             <a
               href="/noticias"
-              className={`shrink-0 whitespace-nowrap text-sm font-medium link-hover xl:text-base ${
+              className={`whitespace-nowrap text-sm font-medium link-hover xl:text-[0.95rem] 2xl:text-base ${
                 isScrolled ? "text-moss" : "text-cream/80 hover:text-cream"
               }`}
             >
               Noticias
             </a>
           </div>
-          <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0 lg:gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-2 xl:gap-3">
             <a
               href="#contact"
-              className={`btn-magnetic btn-slide hidden cursor-pointer items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium whitespace-nowrap lg:inline-flex xl:px-6 xl:py-3 xl:text-base ${
+              className={`btn-magnetic btn-slide hidden cursor-pointer items-center justify-center rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap xl:inline-flex xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 2xl:text-base ${
                 isScrolled
                   ? "bg-green-accent text-cream"
                   : "bg-green-accent text-cream"
@@ -174,7 +176,7 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center min-h-[20px] min-w-[20px] p-3 rounded-xl hover:bg-white/10 transition-colors relative touch-manipulation lg:hidden"
+              className="relative flex min-h-[20px] min-w-[20px] touch-manipulation items-center justify-center rounded-xl p-3 transition-colors hover:bg-white/10 xl:hidden"
               aria-label="Toggle menu"
             >
               <span
@@ -307,7 +309,7 @@ export default function HomeClient({ latestNews }: { latestNews?: React.ReactNod
       <ResultsSection />
 
       {/* Latest news */}
-      {latestNews}
+      <LatestNewsHome articles={latestNewsArticles} />
 
       {/* Contact Form */}
       <ContactSection />

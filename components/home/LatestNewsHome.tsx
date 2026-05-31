@@ -1,19 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar } from "lucide-react";
-import { getLatestPublishedNews } from "@/lib/noticias";
 
-function formatDate(date: Date) {
-  return new Intl.DateTimeFormat("es-UY", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(date);
-}
+export type LatestNewsArticle = {
+  id: string;
+  title: string;
+  slug: string;
+  coverImageUrl: string;
+  content: string;
+  publishedAtLabel: string | null;
+};
 
-export default async function LatestNewsSection() {
-  const articles = await getLatestPublishedNews(3);
-
+export default function LatestNewsHome({ articles }: { articles: LatestNewsArticle[] }) {
   if (articles.length === 0) return null;
 
   return (
@@ -64,10 +62,10 @@ export default async function LatestNewsSection() {
                     />
                   </div>
                   <div className="p-6">
-                    {article.publishedAt && (
+                    {article.publishedAtLabel && (
                       <p className="mb-2 flex items-center gap-2 font-mono-custom text-xs text-charcoal/50">
                         <Calendar className="h-3.5 w-3.5" />
-                        {formatDate(article.publishedAt)}
+                        {article.publishedAtLabel}
                       </p>
                     )}
                     <h3 className="font-sans-custom text-xl font-bold text-moss group-hover:text-green-accent">
