@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -7,7 +8,8 @@ import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
-import Highlight from "@tiptap/extension-highlight";
+import { Highlight } from "@tiptap/extension-highlight";
+import { TextStyle } from "@tiptap/extension-text-style";
 import Youtube from "@tiptap/extension-youtube";
 import type { Editor } from "@tiptap/react";
 import {
@@ -141,24 +143,34 @@ function addYoutubeVideo(editor: Editor) {
   editor.commands.setYoutubeVideo({ src: trimmed });
 }
 
+function toggleHighlightMark(editor: Editor) {
+  editor.commands.focus();
+  if (typeof editor.commands.toggleHighlight === "function") {
+    editor.commands.toggleHighlight();
+    return;
+  }
+  editor.chain().focus().toggleMark("highlight").run();
+}
+
 export default function RichTextEditor({
   value,
   onChange,
   placeholder = "Escribí el contenido de la noticia…",
 }: RichTextEditorProps) {
-  const editor = useEditor({
-    extensions: [
+  const extensions = useMemo(
+    () => [
       StarterKit.configure({
         heading: { levels: [2, 3] },
       }),
-      Underline,
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
+      TextStyle,
       Highlight.configure({
         HTMLAttributes: {
           class: "rounded-sm bg-green-accent/25 px-0.5",
         },
+      }),
+      Underline,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
       }),
       Link.configure({
         openOnClick: false,
@@ -179,6 +191,11 @@ export default function RichTextEditor({
       }),
       Placeholder.configure({ placeholder }),
     ],
+    [placeholder],
+  );
+
+  const editor = useEditor({
+    extensions,
     content: value,
     immediatelyRender: false,
     onUpdate: ({ editor: ed }) => onChange(ed.getHTML()),
@@ -236,7 +253,7 @@ export default function RichTextEditor({
         </ToolbarButton>
         <ToolbarButton
           label="Resaltar"
-          onClick={() => editor.chain().focus().toggleHighlight().run()}
+          onClick={() => toggleHighlightMark(editor)}
           active={editor.isActive("highlight")}
         >
           <Highlighter className="h-4 w-4" />
