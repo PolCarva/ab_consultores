@@ -182,6 +182,14 @@ body {
   color: var(--moss);
 }
 
+.prose-noticias h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--moss);
+}
+
 .prose-noticias p {
   margin-bottom: 1rem;
 }
@@ -216,6 +224,54 @@ body {
 .prose-noticias img {
   max-width: 100%;
   border-radius: 1rem;
+  margin: 1.5rem 0;
+}
+
+.prose-noticias hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--moss) 25%, transparent);
+}
+
+.prose-noticias code {
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.9em;
+  background: color-mix(in srgb, var(--moss) 10%, transparent);
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+}
+
+.prose-noticias pre {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--charcoal);
+  color: var(--cream);
+  border-radius: 1rem;
+  overflow-x: auto;
+}
+
+.prose-noticias pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose-noticias mark {
+  background: color-mix(in srgb, var(--green-accent) 30%, transparent);
+  padding: 0.1em 0.2em;
+  border-radius: 0.2em;
+}
+
+.prose-noticias iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1.5rem auto;
+  border: 0;
+  border-radius: 1rem;
+}
+
+.prose-noticias div[data-youtube-video],
+.prose-noticias .youtube-video {
   margin: 1.5rem 0;
 }
 
