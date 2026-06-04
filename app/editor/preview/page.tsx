@@ -1,9 +1,9 @@
-import HomeClient from "./home-client";
+import EditorPreview from "@/components/admin/editor/EditorPreview";
+import { getDraftContent } from "@/lib/site-content.server";
 import { getLatestPublishedNews } from "@/lib/noticias";
-import { getPublishedContent } from "@/lib/site-content.server";
 import type { LatestNewsArticle } from "@/components/home/LatestNewsHome";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 function formatNewsDate(date: Date) {
   return new Intl.DateTimeFormat("es-UY", {
@@ -14,11 +14,12 @@ function formatNewsDate(date: Date) {
   }).format(date);
 }
 
-export default async function Home() {
-  const [raw, content] = await Promise.all([
+export default async function EditorPreviewPage() {
+  const [initialContent, raw] = await Promise.all([
+    getDraftContent(),
     getLatestPublishedNews(3),
-    getPublishedContent(),
   ]);
+
   const latestNewsArticles: LatestNewsArticle[] = raw.map((article) => ({
     id: article.id,
     title: article.title,
@@ -31,6 +32,9 @@ export default async function Home() {
   }));
 
   return (
-    <HomeClient content={content} latestNewsArticles={latestNewsArticles} />
+    <EditorPreview
+      initialContent={initialContent}
+      latestNewsArticles={latestNewsArticles}
+    />
   );
 }

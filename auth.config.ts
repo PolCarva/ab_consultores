@@ -25,8 +25,9 @@ export const authConfig = {
       const { pathname } = request.nextUrl;
       const isLogin = pathname === "/admin/login";
       const isAdminArea = pathname.startsWith("/admin");
+      const isEditorArea = pathname.startsWith("/editor");
 
-      if (isAdminArea && !isLogin) {
+      if ((isAdminArea && !isLogin) || isEditorArea) {
         return !!auth;
       }
       if (isLogin && auth) {

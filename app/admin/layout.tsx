@@ -20,8 +20,17 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               >
                 Nueva noticia
               </Link>
+              <Link
+                href="/editor"
+                className="text-sm font-medium text-green-accent link-hover"
+              >
+                Editor de la web
+              </Link>
+              <Link href="/" className="text-sm text-charcoal/60 link-hover">
+                Ver inicio
+              </Link>
               <Link href="/noticias" className="text-sm text-charcoal/60 link-hover">
-                Ver sitio
+                Ver noticias
               </Link>
             </div>
             <div className="flex items-center gap-4 text-sm text-charcoal/60">
