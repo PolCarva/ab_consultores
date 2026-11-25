@@ -238,7 +238,7 @@ function SiteNav({
               }`}
             >
               <LogIn className="h-4 w-4" />
-              Portal clientes
+              Libreta A&amp;B
             </a>
             <a
               href={nav.ctaHref}
@@ -299,7 +299,7 @@ function SiteNav({
               className="bg-cream text-charcoal px-8 py-4 rounded-full font-bold text-lg hover:bg-cream/90 transition-colors flex items-center gap-2 whitespace-nowrap"
             >
               <LogIn className="w-6 h-6" />
-              Portal clientes
+              Libreta A&amp;B
             </a>
             <a
               href={social.whatsappUrl}

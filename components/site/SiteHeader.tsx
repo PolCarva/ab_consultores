@@ -17,7 +17,7 @@ export default function SiteHeader() {
             Noticias
           </Link>
           <a href={PORTAL_URL} className="link-hover">
-            Portal clientes
+            Libreta A&amp;B
           </a>
           <Link
             href="/#contacto"
