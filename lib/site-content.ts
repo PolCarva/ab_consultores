@@ -4,6 +4,9 @@
  * El editor visual (/admin/editor) lee y escribe esta estructura.
  */
 
+/** Portal de clientes (Libreta A&B): lleva al login. */
+export const PORTAL_URL = "https://libreta.aybconsultoresagro.com/portal.html";
+
 export const SECTION_IDS = [
   "hero",
   "features",

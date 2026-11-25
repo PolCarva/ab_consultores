@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PORTAL_URL } from "@/lib/site-content";
 
 export default function SiteHeader() {
   return (
@@ -15,6 +16,9 @@ export default function SiteHeader() {
           <Link href="/noticias" className="link-hover">
             Noticias
           </Link>
+          <a href={PORTAL_URL} className="link-hover">
+            Portal clientes
+          </a>
           <Link
             href="/#contacto"
             className="btn-magnetic hidden rounded-full bg-moss px-5 py-2 text-cream sm:inline-block"

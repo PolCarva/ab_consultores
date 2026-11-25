@@ -22,8 +22,10 @@ import {
   MessageCircle,
   Instagram,
   Facebook,
+  LogIn,
 } from "lucide-react";
 import {
+  PORTAL_URL,
   DEFAULT_CONTENT,
   type SiteContent,
   type SectionId,
@@ -228,6 +230,17 @@ function SiteNav({
           </div>
           <div className="ml-auto flex shrink-0 items-center gap-2 xl:gap-3">
             <a
+              href={PORTAL_URL}
+              className={`btn-magnetic hidden cursor-pointer items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors sm:inline-flex xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 2xl:text-base ${
+                isScrolled
+                  ? "border-moss/30 text-moss hover:bg-moss/5"
+                  : "border-cream/40 text-cream hover:bg-cream/10"
+              }`}
+            >
+              <LogIn className="h-4 w-4" />
+              Portal clientes
+            </a>
+            <a
               href={nav.ctaHref}
               className="btn-magnetic btn-slide hidden cursor-pointer items-center justify-center rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap xl:inline-flex xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 2xl:text-base bg-green-accent text-cream"
             >
@@ -281,6 +294,13 @@ function SiteNav({
                 {link.label}
               </a>
             ))}
+            <a
+              href={PORTAL_URL}
+              className="bg-cream text-charcoal px-8 py-4 rounded-full font-bold text-lg hover:bg-cream/90 transition-colors flex items-center gap-2 whitespace-nowrap"
+            >
+              <LogIn className="w-6 h-6" />
+              Portal clientes
+            </a>
             <a
               href={social.whatsappUrl}
               target="_blank"
