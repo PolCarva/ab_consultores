@@ -1,6 +1,5 @@
-import HomeClient from "./home-client";
+import NewHome from "@/components/home/NewHome";
 import { getLatestPublishedNews } from "@/lib/noticias";
-import { getPublishedContent } from "@/lib/site-content.server";
 import type { LatestNewsArticle } from "@/components/home/LatestNewsHome";
 
 export const revalidate = 300;
@@ -15,10 +14,7 @@ function formatNewsDate(date: Date) {
 }
 
 export default async function Home() {
-  const [raw, content] = await Promise.all([
-    getLatestPublishedNews(3),
-    getPublishedContent(),
-  ]);
+  const raw = await getLatestPublishedNews(3);
   const latestNewsArticles: LatestNewsArticle[] = raw.map((article) => ({
     id: article.id,
     title: article.title,
@@ -30,7 +26,5 @@ export default async function Home() {
       : null,
   }));
 
-  return (
-    <HomeClient content={content} latestNewsArticles={latestNewsArticles} />
-  );
+  return <NewHome latestNewsArticles={latestNewsArticles} />;
 }

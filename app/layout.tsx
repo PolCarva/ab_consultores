@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Outfit, Cormorant_Garamond, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Outfit, Cormorant_Garamond, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
 
 const jakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta-sans",
@@ -48,7 +55,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo-small-black.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
       </head>
       <body
-        className={`${jakartaSans.variable} ${outfit.variable} ${cormorant.variable} ${plexMono.variable} antialiased`}
+        className={`${inter.variable} ${jakartaSans.variable} ${outfit.variable} ${cormorant.variable} ${plexMono.variable} antialiased`}
       >
         <div className="noise-overlay" aria-hidden />
         {children}
