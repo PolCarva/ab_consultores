@@ -14,7 +14,11 @@ function formatNewsDate(date: Date) {
 }
 
 export default async function Home() {
-  const raw = await getLatestPublishedNews(3);
+  // Si la base no responde, la home se muestra igual, sin noticias.
+  const raw = await getLatestPublishedNews(3).catch((error) => {
+    console.error("No se pudieron cargar las noticias de la home:", error);
+    return [];
+  });
   const latestNewsArticles: LatestNewsArticle[] = raw.map((article) => ({
     id: article.id,
     title: article.title,

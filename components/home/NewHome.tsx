@@ -1382,12 +1382,12 @@ export function Footer() {
           </div>
           <nav className="flex min-w-[150px] flex-col gap-2.5 text-[15px]">
             <strong className="text-[13px] tracking-[0.08em] text-[#f0bd3a]">LA WEB</strong>
-            <a href="/#quienes-somos" className={linkCls}>
+            <Link href="/#quienes-somos" className={linkCls}>
               Quiénes somos
-            </a>
-            <a href="/#filosofia" className={linkCls}>
+            </Link>
+            <Link href="/#filosofia" className={linkCls}>
               Filosofía
-            </a>
+            </Link>
             <Link href="/noticias" className={linkCls}>
               Noticias
             </Link>
@@ -1400,9 +1400,9 @@ export function Footer() {
             <a href={PORTAL_URL} className={linkCls}>
               Crear cuenta
             </a>
-            <a href="/#libreta" className={linkCls}>
+            <Link href="/#libreta" className={linkCls}>
               Cómo funciona
-            </a>
+            </Link>
           </nav>
           <div className="flex min-w-[200px] flex-col gap-2.5 text-[15px]">
             <strong className="text-[13px] tracking-[0.08em] text-[#f0bd3a]">CONTACTO</strong>
