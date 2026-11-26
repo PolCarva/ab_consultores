@@ -3,28 +3,30 @@ import { PORTAL_URL } from "@/lib/site-content";
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-moss/10 bg-cream/90 glass-blur">
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <Link href="/" className="link-hover">
-          <img
-            src="/logo-small.svg"
-            alt="A&B Consultores"
-            className="h-10 w-auto object-contain md:h-12"
-          />
+    <header className="sticky top-0 z-50 bg-[#0f4a2a] font-[family-name:var(--font-inter)] text-white">
+      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-3.5">
+        <Link href="/" className="flex items-center gap-3 text-white no-underline">
+          <img src="/img/logo-ayb-blanco.png" alt="A&B" className="block h-9 w-auto" />
+          <span className="h-[26px] w-px bg-white/35" />
+          <span className="text-[11px] font-semibold uppercase leading-[1.3] tracking-[0.12em] text-[#d4e4d8]">
+            Consultores
+            <br />
+            Agropecuarios
+          </span>
         </Link>
-        <nav className="flex items-center gap-6 font-sans-custom text-sm font-medium text-moss">
-          <Link href="/noticias" className="link-hover">
+        <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] font-medium">
+          <Link href="/noticias" className="text-white no-underline hover:text-[#f0bd3a]">
             Noticias
           </Link>
-          <a href={PORTAL_URL} className="link-hover">
-            Libreta A&amp;B
-          </a>
-          <Link
-            href="/#contacto"
-            className="btn-magnetic hidden rounded-full bg-moss px-5 py-2 text-cream sm:inline-block"
-          >
+          <Link href="/#contacto" className="text-white no-underline hover:text-[#f0bd3a]">
             Contacto
           </Link>
+          <a
+            href={PORTAL_URL}
+            className="inline-flex min-h-10 items-center rounded-[10px] bg-[#f0bd3a] px-4 text-[15px] font-bold text-[#0a3520] no-underline hover:bg-[#f5cb5c]"
+          >
+            Libreta A&amp;B
+          </a>
         </nav>
       </div>
     </header>
