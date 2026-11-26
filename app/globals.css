@@ -317,3 +317,36 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* Detalle de noticia en la web pública (estilo A&B; el editor del admin no lo usa) */
+.prose-ayb {
+  color: #13241a;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.prose-ayb h2,
+.prose-ayb h3 {
+  color: #0f4a2a;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.prose-ayb blockquote {
+  border-left-color: #f0bd3a;
+  color: #3f5146;
+}
+
+.prose-ayb a {
+  color: #0f4a2a;
+  font-weight: 600;
+}
+
+.prose-ayb mark {
+  background: #fdf3dc;
+}
+
+.prose-ayb hr {
+  border-top-color: #dfe8dc;
+}
