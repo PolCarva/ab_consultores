@@ -6,6 +6,8 @@
 
 /** Portal de clientes (Libreta A&B): lleva al login. */
 export const PORTAL_URL = "https://libreta.aybconsultoresagro.com/portal.html";
+/** Abre el portal directo en la pestaña "Crear cuenta". */
+export const PORTAL_SIGNUP_URL = `${PORTAL_URL}#crear-cuenta`;
 
 export const SECTION_IDS = [
   "hero",

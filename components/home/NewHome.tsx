@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
-import { PORTAL_URL } from "@/lib/site-content";
+import { PORTAL_URL, PORTAL_SIGNUP_URL } from "@/lib/site-content";
 import type { LatestNewsArticle } from "@/components/home/LatestNewsHome";
 
 /* Home de A&B: verde campo #0f4a2a, dorado #f0bd3a, crema #eef4e8; Inter. */
@@ -113,7 +113,7 @@ function Header() {
           </Icon>
           Iniciar sesión
         </a>
-        <a href={PORTAL_URL} className={`${BTN_GOLD} min-h-11 rounded-[10px] px-5 text-[15px]`}>
+        <a href={PORTAL_SIGNUP_URL} className={`${BTN_GOLD} min-h-11 rounded-[10px] px-5 text-[15px]`}>
           Crear cuenta
         </a>
       </div>
@@ -239,7 +239,7 @@ function Hero() {
             rentables. Y con Libreta A&amp;B tenés todo tu campo anotado y al día, en el celular o en la computadora.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href={PORTAL_URL} className={`${BTN_GOLD} min-h-[52px] px-[26px] text-base`}>
+            <a href={PORTAL_SIGNUP_URL} className={`${BTN_GOLD} min-h-[52px] px-[26px] text-base`}>
               Crear mi cuenta en Libreta
             </a>
             <a href="#contacto" className={`${BTN_OUTLINE_LIGHT} min-h-[52px] px-6 text-base`}>
@@ -519,7 +519,7 @@ function Libreta() {
               No es solo una aplicación. <span className="text-[#f0bd3a]">Es un equipo.</span>
             </h2>
             <div className="flex flex-wrap gap-2.5">
-              <a href={PORTAL_URL} className={`${BTN_GOLD} min-h-12 px-[22px] text-[15px]`}>
+              <a href={PORTAL_SIGNUP_URL} className={`${BTN_GOLD} min-h-12 px-[22px] text-[15px]`}>
                 Crear cuenta
               </a>
               <a href={PORTAL_URL} className={`${BTN_OUTLINE_LIGHT} min-h-12 px-5 text-[15px]`}>
@@ -944,7 +944,7 @@ function PorDentro() {
                 y te ayudamos.
               </span>
             </div>
-            <a href={PORTAL_URL} className={`${BTN_GOLD} min-h-12 px-[22px] text-[15px]`}>
+            <a href={PORTAL_SIGNUP_URL} className={`${BTN_GOLD} min-h-12 px-[22px] text-[15px]`}>
               Crear cuenta
             </a>
           </div>
@@ -1397,7 +1397,7 @@ export function Footer() {
             <a href={PORTAL_URL} className={linkCls}>
               Iniciar sesión
             </a>
-            <a href={PORTAL_URL} className={linkCls}>
+            <a href={PORTAL_SIGNUP_URL} className={linkCls}>
               Crear cuenta
             </a>
             <Link href="/#libreta" className={linkCls}>
